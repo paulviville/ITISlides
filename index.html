@@ -9,81 +9,84 @@
 	</head>
 
 	<body>
+		<script>
+			function includeHTML() {
+				var z, i, elmnt, file, xhttp;
+				/*loop through a collection of all HTML elements:*/
+				z = document.getElementsByTagName("*");
+				for (i = 0; i < z.length; i++) {
+					elmnt = z[i];
+					/*search for elements with a certain atrribute:*/
+					file = elmnt.getAttribute("include-slide");
+					if (file) {
+						/*make an HTTP request using the attribute value as the file name:*/
+						xhttp = new XMLHttpRequest();
+						xhttp.onreadystatechange = function() {
+							if (this.readyState == 4) {
+								if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+								if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+								/*remove the attribute, and call this function once more:*/
+								elmnt.removeAttribute("include-slide");
+								includeHTML();
+							}
+						}      
+						xhttp.open("GET", file, true);
+						xhttp.send();
+						/*exit the function:*/
+						return;
+					}
+				}
+			};
+		</script>
+
 		<script type="module">
 			let slides = new Array();
 		</script>
-		<div id="stats"></div>
+		<!-- <div id="stats"></div> -->
 		
 		<div class="reveal">
 			<div class="slides" id="slides">
-				<section id="Title" data-visibility="uncounted"> 
-					<!-- <h3 class='r-fit-text'>Comité de Suivis de Thèse : </h3> -->
-					<div class="r-hstack">
-						<img src="Images/Title/IGG.png" height="60px" style="padding-right: 5%;">
-						<img src="Images/Title/ICube.png" height="60px" style="padding-right: 5%;">
-						<img src="Images/Title/CNRS.jpg" height="60px" style="padding-right: 5%;">
-						<img src="Images/Title/unistra.png" height="60px" style="padding-right: 5%;">
-						<img src="Images/Title/msii.png" height="60px" >
-					</div>
-					<hr style="width: 70%; display:flex; justify-content:space-evenly;">
 
-					<h4 class="r-frame" >Génération de maillages hexaédriques à partir de squelettes</h2>
-					<div>Paul VIVILLE</div>
-					<div class="r-vstack" style="font-size: 0.5em; padding-top: 2%;  text-align: left;">
-						<div><b>Thèse dirigée par :</b>
-						<br> Dominique BECHMANN</div>
-						<!-- <div class="r-hstack" style="font-size: 1.0em; padding-top: 2%;">	
+				
+				<!-- Intro -->
+				<!-- <section include-slide="./Slides/slide_titre.html" data-visibility="uncounted"></section>
+				<section include-slide="./Slides/slide_objectifs.html"></section>
+				<section include-slide="./Slides/slide_context.html"></section>
+				<section include-slide="./Slides/slide_meshTypes.html"></section>
+				<section include-slide="./Slides/slide_meshTypes_tet.html"></section>
+				<section include-slide="./Slides/slide_meshTypes_hexdominant.html"></section>
+				<section include-slide="./Slides/slide_meshTypes_hex.html"></section> 
+				<section include-slide="./Slides/slide_hexmesh0.html"></section> -->
+				<section include-slide="./Slides/slide_hexmesh1.html"></section>
+				<!-- <section include-slide=""></section> -->
+				<!-- <section include-slide=""></section> -->
+				
 
-							<div>
-								<div><b>Rapporteurs :</b></div>
-								<ul style="list-style: none;">
-									<li>M. Dimtry SOKOLOV</li>
-									<li>Mme. Géraldine MORIN</li>
-									<li>M. Franck LEDOUX</li>
-								</ul>
-							</div>
-							<div>
-								<div><b>Examinateurs :</b></div>
-								<ul style="list-style: none;">
-									<li>M. Yannick HOARAU</li>
-									<li>M. Pierre KRAEMER</li>
-								</ul>
-							</div>
-						</div> -->
-
-						<div class="r-hstack" style="font-size: 1.0em; padding-top: 2%;">	
-							<div class="r-stretch" style="font-size: 1.0em;"><b>Rapporteurs :</b>
-							<br>M. Dimtry SOKOLOV
-							<br>Mme. Géraldine MORIN
-							<br>M. Franck LEDOUX
-							</div>
-
-							<div style="margin-right:60px"></div>
-
-							<div style="font-size: 1.0em;"><b>Examinateurs :</b>
-							<br>M. Yannick HOARAU
-							<br>M. Pierre KRAEMER
-							</div>
-						</div>
-					</div>
-
-
-				</section>
-
-				<section id="Intro">
-
-				</section>
-
+				<script>
+					includeHTML();
+				</script>
 			</div>	
 		</div>
 
 		<script type="module">
 			import Reveal from './Reveal/reveal.esm.js'
+
+			import Slide from './Slides/Slide.js';
+			import {slide_objectif} from './Slides/slide_objectif.js';
+
 			Reveal.initialize({
 				touch: false, 
 				slideNumber: 'c/t',
 				transition: 'none',
-			}).then(() => {})
+			}).then(() => {
+				slide_objectif.init(
+					document.getElementById("overview_input"),
+				 	document.getElementById("overview_output")
+				);
+				slide_objectif.open();
+			});
+
+			
 		</script>
 
 	</body>
