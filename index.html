@@ -40,7 +40,6 @@
 		</script>
 
 		<script type="module">
-			let slides = new Array();
 		</script>
 		<!-- <div id="stats"></div> -->
 		
@@ -49,22 +48,11 @@
 
 				
 				<!-- Intro -->
-				<!-- <section include-slide="./Slides/slide_titre.html" data-visibility="uncounted"></section>
-				<section include-slide="./Slides/slide_objectifs.html"></section>
-				<section include-slide="./Slides/slide_context.html"></section>
-				<section include-slide="./Slides/slide_meshTypes.html"></section>
-				<section include-slide="./Slides/slide_meshTypes_tet.html"></section>
-				<section include-slide="./Slides/slide_meshTypes_hexdominant.html"></section>
-				<section include-slide="./Slides/slide_meshTypes_hex.html"></section> 
-				<section include-slide="./Slides/slide_hexmesh0.html"></section> -->
-				<section include-slide="./Slides/slide_hexmesh1.html"></section>
-				<!-- <section include-slide=""></section> -->
-				<!-- <section include-slide=""></section> -->
-				
-
-				<script>
-					includeHTML();
-				</script>
+				<section id="0_titre.html" data-visibility="uncounted"></section>
+				<section id="1_objectifs.html"></section>
+				<section id="2_context.html"></section>
+				<section id="3_hexmesh0.html"></section>
+				<section id="4_hexmesh1.html"></section>
 			</div>	
 		</div>
 
@@ -72,18 +60,46 @@
 			import Reveal from './Reveal/reveal.esm.js'
 
 			import Slide from './Slides/Slide.js';
-			import {slide_objectif} from './Slides/slide_objectif.js';
+			import {slide_objectif} from './Slides/1_objectif.js';
+
+			const slides = new Array();
+			
+			function loadFile(url, div) {
+				const xhttp = new XMLHttpRequest();
+				let text;
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4) {
+						if (this.status == 200) {div.innerHTML = this.responseText;}
+					}
+				}      
+				xhttp.open("GET", url, false);
+				xhttp.send();
+			}
+
+			async function loadSlideHtml(slide){
+				await loadFile("./Slides/" + slide, document.getElementById(slide));
+			}
 
 			Reveal.initialize({
 				touch: false, 
 				slideNumber: 'c/t',
 				transition: 'none',
+				center: true
 			}).then(() => {
-				slide_objectif.init(
-					document.getElementById("overview_input"),
-				 	document.getElementById("overview_output")
-				);
-				slide_objectif.open();
+
+				loadSlideHtml("0_titre.html");
+				loadSlideHtml("1_objectifs.html").then(() => { 
+					slide_objectif.init(
+						document.getElementById("1_input"),
+						document.getElementById("1_output")
+					);
+					slide_objectif.open();
+				});
+				loadSlideHtml("2_context.html");
+				loadSlideHtml("3_hexmesh0.html");
+				loadSlideHtml("4_hexmesh1.html");
+
+				Reveal.slide(0);
 			});
 
 			
