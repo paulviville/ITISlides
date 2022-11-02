@@ -76,7 +76,7 @@ export const slide_objectif = new Slide(
 		this.clock = new Clock(true);
 		this.time = 0;
 
-		this.toggle_clipping = function(){
+		this.toggleClipping = function(){
 			this.vessels_vol.material.uniforms.clipping.value = 1 - this.vessels_vol.material.uniforms.clipping.value;
 		};
 

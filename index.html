@@ -51,8 +51,20 @@
 				<section id="0_titre.html" data-visibility="uncounted"></section>
 				<section id="1_objectifs.html"></section>
 				<section id="2_context.html"></section>
-				<section id="3_hexmesh0.html"></section>
-				<section id="4_hexmesh1.html"></section>
+				<section id="3_hexmesh_intro.html"></section>
+				<section id="4_hexmesh_criteres.html"></section>
+				<section id="5_hexmesh_regul.html"></section>
+				<section id="6_hexmesh_JN.html"></section>
+				<section id="7_hexmesh_js_reg.html"></section>
+				<section id="8_hexmesh_align.html"></section>
+				<section id="9_hexmesh_nb.html"></section>
+				<section id="10_methodes_gen.html"></section>
+				<section id="11_methodes_spe.html"></section>
+				<section id="12_methodes_courbes.html"></section>
+				<!-- <section id=""></section> -->
+				<!-- <section id=""></section> -->
+				<!-- <section id=""></section> -->
+				<!-- <section id=""></section> -->
 			</div>	
 		</div>
 
@@ -61,9 +73,30 @@
 
 			import Slide from './Slides/Slide.js';
 			import {slide_objectif} from './Slides/1_objectif.js';
+			import RevealNotes from './Reveal/notes/notes.esm.js'
 
 			const slides = new Array();
-			
+			slides["1_objectifs.html"] = slide_objectif;
+			// slides[] = ;
+
+			let active_slide;
+			Reveal.addEventListener('slidechanged', function(event) {
+				if(active_slide) active_slide.close();
+				var sectionID = Reveal.getCurrentSlide().id;
+				active_slide = slides[sectionID]
+				if(active_slide) active_slide.open();
+			});
+
+			const fragment_events = [];
+			Reveal.addEventListener('fragmentshown', function(event) {
+				if(fragment_events[event.fragment.id])
+					fragment_events[event.fragment.id]();
+			});
+			Reveal.addEventListener('fragmenthidden', function(event) {
+				if(fragment_events[event.fragment.id])
+					fragment_events[event.fragment.id]();
+			});
+
 			function loadFile(url, div) {
 				const xhttp = new XMLHttpRequest();
 				let text;
@@ -84,7 +117,8 @@
 				touch: false, 
 				slideNumber: 'c/t',
 				transition: 'none',
-				center: true
+				center: true,
+				plugins: [RevealNotes]
 			}).then(() => {
 
 				loadSlideHtml("0_titre.html");
@@ -93,13 +127,29 @@
 						document.getElementById("1_input"),
 						document.getElementById("1_output")
 					);
+
+					fragment_events["1_clipping"] = slides["1_objectifs.html"].toggleClipping.bind(slides["1_objectifs.html"]);
+
+
 					slide_objectif.open();
 				});
 				loadSlideHtml("2_context.html");
-				loadSlideHtml("3_hexmesh0.html");
-				loadSlideHtml("4_hexmesh1.html");
-
-				Reveal.slide(0);
+				loadSlideHtml("3_hexmesh_intro.html");
+				loadSlideHtml("4_hexmesh_criteres.html");
+				loadSlideHtml("5_hexmesh_regul.html");
+				loadSlideHtml("6_hexmesh_JN.html");
+				loadSlideHtml("7_hexmesh_js_reg.html");
+				loadSlideHtml("8_hexmesh_align.html");
+				loadSlideHtml("9_hexmesh_nb.html");
+				loadSlideHtml("10_methodes_gen.html");
+				loadSlideHtml("11_methodes_spe.html");
+				loadSlideHtml("12_methodes_courbes.html");
+				// loadSlideHtml("");
+				// loadSlideHtml("");
+				// loadSlideHtml("");
+				// loadSlideHtml("");
+				
+				Reveal.slide(12);
 			});
 
 			
