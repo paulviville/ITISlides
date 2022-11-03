@@ -2,28 +2,33 @@ Génération de Maillages
 <hr style="width: 70%; display:flex; justify-content:space-evenly;">
 <div class="r-hstack">  
 	<div class="r-vstack">
-		<div>  
-			<img src="Images/SOTA/livesu2016.png" height="150px" style="padding-right: 0%; margin: 0px;">
-			<p style="font-size:16px; margin-top: 0px;">[Livesu et al. 2022]</p>
+		<div class="r-hstack">
+			<div>  
+				<img src="Images/SOTA/insert_poly.png" height="180px" style="padding-right: 0%; margin: 0px;">
+				<p style="font-size:18px; margin-top: 0px;">[Hijazi et al. 2010]</p>
+			</div>
+			<div>  
+				<img src="Images/SOTA/insert_hex.png" height="180px" style="padding-right: 0%; margin: 0px;">
+				<p style="font-size:18px; margin-top: -25px;"></br>[Livesu et al. 2016]</p>
+			</div>
 		</div>
 		<div>  
-			<img src="Images/SOTA/laytrack.png" height="140px" style="padding-right: 0%; margin: 0px;">
-			<p style="font-size:16px; margin-top: 0px;"></br>[Quadros, 2016]</p>
+			<img src="Images/SOTA/insert_sphere.png" height="180px" style="padding-right: 0%; margin: 0px;">
+			<p style="font-size:18px; margin-top: -25px;"></br>[Panatopoulou et al, 2018]</p>
 		</div>
 	</div>
 	<div>
-		<p style="font-size: 25px;"><b>Méthodes spécialisées</b></p>
+		<p style="font-size: 25px;"><b>Différentes approches</b></p>
 		<ul style="font-size: 25px;">
-			<li style="padding-top: 0px;">Squelette courbe</li>
+			<li style="padding-top: 0px;">Insertion de noyau polyédrique</li>
+			<li style="padding-top: 0px;">Insertion d'hexaèdre</li>
 			<ul style="font-size: 20px;">
-				<li style="padding-top: 10px;">Nombreuse en surfacique</li>
-				<li style="padding-top: 10px;">Peu en volumique</li>
-				<li style="padding-top: 10px;">problème clé : <b>Les embranchements</b></li>
+				<li style="padding-top: 10px;">Système à résoudre</li>
 			</ul>
-			<li style="padding-top: 14px;">Squelette surfacique</li>
+			<li style="padding-top: 14px;">Partition de sphère</li>
 			<ul style="font-size: 20px;">
-				<li style="padding-top: 10px;">Pas de garantie hexaédrique</li>
-				<li style="padding-top: 10px;">Coûteuses en calculs</li>
+				<li style="padding-top: 10px;">Voronoï : système à résoudre<br>[Fuentes Suarez et al, 2018]</li>
+				<li style="padding-top: 10px;">Quadrilatères : décision locale<br>[Panatopoulou et al, 2018]</li>
 			</ul>
 		</ul>
 	</div>

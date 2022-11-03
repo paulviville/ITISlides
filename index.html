@@ -61,6 +61,13 @@
 				<section id="10_methodes_gen.html"></section>
 				<section id="11_methodes_spe.html"></section>
 				<section id="12_methodes_courbes.html"></section>
+				<section id="13_squelette.html"></section>
+				<section id="14_squelette.html"></section>
+				<section id="15_algo1D.html"></section>
+				<section id="16_1D2D.html"></section>
+				<section id="17_algo2D.html"></section>
+				<section id="18_intuitions.html"></section>
+				<section id="19_embranchements.html"></section>
 				<!-- <section id=""></section> -->
 				<!-- <section id=""></section> -->
 				<!-- <section id=""></section> -->
@@ -73,10 +80,16 @@
 
 			import Slide from './Slides/Slide.js';
 			import {slide_objectif} from './Slides/1_objectif.js';
+			import {slide_Algo1D} from './Slides/15_algo1D.js';
+			import {slide_1D2D} from './Slides/16_1D2D.js';
+			import {slide_Algo2D} from './Slides/17_algo2D.js';
 			import RevealNotes from './Reveal/notes/notes.esm.js'
 
 			const slides = new Array();
 			slides["1_objectifs.html"] = slide_objectif;
+			slides["15_algo1D.html"] = slide_Algo1D;
+			slides["16_1D2D.html"] = slide_1D2D;
+			slides["17_algo2D.html"] = slide_Algo2D;
 			// slides[] = ;
 
 			let active_slide;
@@ -144,12 +157,44 @@
 				loadSlideHtml("10_methodes_gen.html");
 				loadSlideHtml("11_methodes_spe.html");
 				loadSlideHtml("12_methodes_courbes.html");
-				// loadSlideHtml("");
-				// loadSlideHtml("");
-				// loadSlideHtml("");
-				// loadSlideHtml("");
+				loadSlideHtml("13_squelette.html");
+				loadSlideHtml("14_squelette.html");
 				
-				Reveal.slide(12);
+				loadSlideHtml("15_algo1D.html").then(() => { 
+					slide_Algo1D.init(
+						document.getElementById("algo1D_0"),
+						document.getElementById("algo1D_1"),
+						document.getElementById("algo1D_2"),
+						document.getElementById("algo1D_3"),
+						document.getElementById("algo1D_4")
+					);
+				});
+
+				loadSlideHtml("16_1D2D.html").then(() => { 
+					slide_1D2D.init(
+						document.getElementById("squelette_1D"),
+						document.getElementById("squelette_2D")
+					);
+				});
+
+				loadSlideHtml("17_algo2D.html").then(() => { 
+					slide_Algo2D.init(
+						document.getElementById("algo2D_0"),
+						document.getElementById("algo2D_1"),
+						document.getElementById("algo2D_2"),
+						document.getElementById("algo2D_3")
+					);
+
+					slide_Algo2D.open();
+				});
+
+				loadSlideHtml("18_intuitions.html");
+				loadSlideHtml("19_embranchements.html");
+				// loadSlideHtml("");
+				// loadSlideHtml("");
+				// loadSlideHtml("");
+
+				Reveal.slide(19);
 			});
 
 			
