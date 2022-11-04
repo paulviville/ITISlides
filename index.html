@@ -68,7 +68,17 @@
 				<section id="17_algo2D.html"></section>
 				<section id="18_intuitions.html"></section>
 				<section id="19_embranchements.html"></section>
-				<!-- <section id=""></section> -->
+				<section id="20_embranchements.html"></section>
+				<section id="21_embranchements.html"></section>
+				<section id="22_embranchements.html"></section>
+				<section id="23_partition.html"></section>
+				<section id="24_algorithme.html"></section>
+				<section id="25_blocs.html"></section>
+				<section id="26_adaptation.html"></section>
+				<section id="27_analyse.html"></section>
+				<section id="28_echafaudage.html"></section>
+				<section id="29_echafaudage.html"></section>
+				<section id="30_echafaudage.html"></section>
 				<!-- <section id=""></section> -->
 				<!-- <section id=""></section> -->
 				<!-- <section id=""></section> -->
@@ -83,6 +93,10 @@
 			import {slide_Algo1D} from './Slides/15_algo1D.js';
 			import {slide_1D2D} from './Slides/16_1D2D.js';
 			import {slide_Algo2D} from './Slides/17_algo2D.js';
+			import {slide_sphere_partition} from './Slides/23_partition.js';
+			import {slide_Algo} from './Slides/24_algorithme.js';
+			import {slide_embranch} from './Slides/29_echafaudage.js';
+
 			import RevealNotes from './Reveal/notes/notes.esm.js'
 
 			const slides = new Array();
@@ -90,6 +104,9 @@
 			slides["15_algo1D.html"] = slide_Algo1D;
 			slides["16_1D2D.html"] = slide_1D2D;
 			slides["17_algo2D.html"] = slide_Algo2D;
+			slides["23_partition.html"] = slide_sphere_partition;
+			slides["24_algorithme.html"] = slide_Algo;
+			slides["29_echafaudage.html"] = slide_embranch;
 			// slides[] = ;
 
 			let active_slide;
@@ -184,17 +201,55 @@
 						document.getElementById("algo2D_2"),
 						document.getElementById("algo2D_3")
 					);
-
-					slide_Algo2D.open();
 				});
 
 				loadSlideHtml("18_intuitions.html");
 				loadSlideHtml("19_embranchements.html");
-				// loadSlideHtml("");
+				loadSlideHtml("20_embranchements.html");
+				loadSlideHtml("21_embranchements.html");
+				loadSlideHtml("22_embranchements.html");
+
+				loadSlideHtml("23_partition.html").then(() => { 
+					slides["23_partition.html"].init(
+						document.getElementById("SP_init"),
+						document.getElementById("SP_Points"),
+						document.getElementById("SP_Raw"),
+						document.getElementById("SP_Remesh"),
+						document.getElementById("SP_Dual"),
+						document.getElementById("SP_Result")
+					);
+				});
+
+				loadSlideHtml("24_algorithme.html", "./Slides/24_algorithme.html").then(() => { 
+					slides["24_algorithme.html"].init(
+						document.getElementById("algo_0"),
+						document.getElementById("algo_1"),
+						document.getElementById("algo_2"),
+						document.getElementById("algo_3"),
+						document.getElementById("algo_4")
+					);
+					slides["24_algorithme.html"].open();
+				});
+
+				loadSlideHtml("25_blocs.html", "./Slides/25_blocs.html");
+				loadSlideHtml("26_adaptation.html", "./Slides/26_adaptation.html");
+				loadSlideHtml("27_analyse.html", "./Slides/27_analyse.html");
+				loadSlideHtml("28_echafaudage.html", "./Slides/28_echafaudage.html");
+
+				loadSlideHtml("29_echafaudage.html", "./Slides/29_echafaudage.html").then(() => { 
+					slides["29_echafaudage.html"].init(
+						document.getElementById("29_gen"),
+						document.getElementById("29_flat"),
+						document.getElementById("29_ortho")
+					);
+					slides["29_echafaudage.html"].open();
+				});
+
+				loadSlideHtml("30_echafaudage.html", "./Slides/30_echafaudage.html");
 				// loadSlideHtml("");
 				// loadSlideHtml("");
 
-				Reveal.slide(19);
+				Reveal.slide(29);
 			});
 
 			
