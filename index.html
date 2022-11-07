@@ -79,7 +79,26 @@
 				<section id="28_echafaudage.html"></section>
 				<section id="29_echafaudage.html"></section>
 				<section id="30_echafaudage.html"></section>
-				<!-- <section id=""></section> -->
+				<section id="31_propagation.html"></section>
+				<section id="32_insertion.html"></section>
+				<section id="33_coutures.html"></section>
+				<section id="34_transfert.html"></section>
+				<section id="35_brut.html"></section>
+				<section id="36_refine.html"></section>
+				<section id="37_refine.html"></section>
+
+				<section id="39_proprietes.html"></section>
+				<section id="40_limites.html"></section>
+				<section id="41_resultats.html"></section>
+				<section id="42_resultats.html"></section>
+				<section id="43_resultats.html"></section>
+				<section id="44_resultats.html"></section>
+				<section id="45_resultats.html"></section>
+				<section id="46_medical.html"></section>
+
+				<section id="49_theorique.html"></section>
+				<section id="50_theorique.html"></section>
+				<section id="51_perspectives.html"></section>
 				<!-- <section id=""></section> -->
 				<!-- <section id=""></section> -->
 			</div>	
@@ -96,6 +115,13 @@
 			import {slide_sphere_partition} from './Slides/23_partition.js';
 			import {slide_Algo} from './Slides/24_algorithme.js';
 			import {slide_embranch} from './Slides/29_echafaudage.js';
+			import {slide_brut} from './Slides/35_brut.js';
+			import {slide_results1} from './Slides/41_resultats.js';
+			import {slide_results2} from './Slides/42_resultats.js';
+			import {slide_results3} from './Slides/43_resultats.js';
+			import {slide_results4} from './Slides/44_resultats.js';
+			import {slide_results5} from './Slides/45_resultats.js';
+			import {slide_medical0} from './Slides/46_medical.js';
 
 			import RevealNotes from './Reveal/notes/notes.esm.js'
 
@@ -107,6 +133,13 @@
 			slides["23_partition.html"] = slide_sphere_partition;
 			slides["24_algorithme.html"] = slide_Algo;
 			slides["29_echafaudage.html"] = slide_embranch;
+			slides["35_brut.html"] = slide_brut;
+			slides["41_resultats.html"] = slide_results1;
+			slides["42_resultats.html"] = slide_results2;
+			slides["43_resultats.html"] = slide_results3;
+			slides["44_resultats.html"] = slide_results4;
+			slides["45_resultats.html"] = slide_results5;
+			slides["46_medical.html"] = slide_medical0;
 			// slides[] = ;
 
 			let active_slide;
@@ -228,7 +261,6 @@
 						document.getElementById("algo_3"),
 						document.getElementById("algo_4")
 					);
-					slides["24_algorithme.html"].open();
 				});
 
 				loadSlideHtml("25_blocs.html", "./Slides/25_blocs.html");
@@ -242,14 +274,115 @@
 						document.getElementById("29_flat"),
 						document.getElementById("29_ortho")
 					);
-					slides["29_echafaudage.html"].open();
 				});
 
 				loadSlideHtml("30_echafaudage.html", "./Slides/30_echafaudage.html");
-				// loadSlideHtml("");
-				// loadSlideHtml("");
+				loadSlideHtml("31_propagation.html", "./Slides/31_propagation.html");
+				loadSlideHtml("32_insertion.html", "./Slides/32_insertion.html");
+				loadSlideHtml("33_coutures.html", "./Slides/33_coutures.html");
+				loadSlideHtml("34_transfert.html", "./Slides/34_transfert.html");
 
-				Reveal.slide(29);
+				loadSlideHtml("35_brut.html", "./Slides/35_brut.html").then(() => { 
+					slides["35_brut.html"].init(
+						document.getElementById("brut_input"),
+						document.getElementById("brut_output")
+					);
+				});
+
+				loadSlideHtml("36_refine.html");
+				loadSlideHtml("37_refine.html");
+
+				loadSlideHtml("39_proprietes.html");
+				loadSlideHtml("40_limites.html");
+
+				loadSlideHtml("41_resultats.html", "./Slides/41_resultats.html").then(() => { 
+					slides["41_resultats.html"].init(
+						document.getElementById("result_horse"),
+						document.getElementById("result_dinopet")
+					);
+
+					fragment_events["41_show"] = slides["41_resultats.html"].toggle_visible.bind(slides["41_resultats.html"]);
+					fragment_events["41_quality"] = slides["41_resultats.html"].toggle_material.bind(slides["41_resultats.html"]);
+					fragment_events["41_clipping"] = slides["41_resultats.html"].toggle_clipping.bind(slides["41_resultats.html"]);
+
+				});
+
+				loadSlideHtml("41_resultats.html", "./Slides/41_resultats.html").then(() => { 
+					slides["41_resultats.html"].init(
+						document.getElementById("result_horse"),
+						document.getElementById("result_dinopet")
+					);
+
+					fragment_events["41_show"] = slides["41_resultats.html"].toggle_visible.bind(slides["41_resultats.html"]);
+					fragment_events["41_quality"] = slides["41_resultats.html"].toggle_material.bind(slides["41_resultats.html"]);
+					fragment_events["41_clipping"] = slides["41_resultats.html"].toggle_clipping.bind(slides["41_resultats.html"]);
+
+				});
+
+				loadSlideHtml("42_resultats.html", "./Slides/42_resultats.html").then(() => { 
+					slides["42_resultats.html"].init(
+						document.getElementById("result_metatron"),
+						document.getElementById("result_santa")
+					);
+
+					// fragment_events["42_show"] = slides["42_resultats.html"].toggle_visible.bind(slides["42_resultats.html"]);
+					fragment_events["42_quality"] = slides["42_resultats.html"].toggle_material.bind(slides["42_resultats.html"]);
+					fragment_events["42_clipping"] = slides["42_resultats.html"].toggle_clipping.bind(slides["42_resultats.html"]);
+				});
+
+				loadSlideHtml("43_resultats.html", "./Slides/43_resultats.html").then(() => { 
+					slides["43_resultats.html"].init(
+						document.getElementById("result_holes0"),
+						document.getElementById("result_holes1")
+					);
+
+					fragment_events["43_show"] = slides["43_resultats.html"].toggle_visible.bind(slides["43_resultats.html"]);
+					fragment_events["43_quality"] = slides["43_resultats.html"].toggle_material.bind(slides["43_resultats.html"]);
+					fragment_events["43_clipping"] = slides["43_resultats.html"].toggle_clipping.bind(slides["43_resultats.html"]);
+				});
+
+
+				loadSlideHtml("44_resultats.html", "./Slides/44_resultats.html").then(() => { 
+					slides["44_resultats.html"].init(
+						document.getElementById("result_dilo"),
+						document.getElementById("result_hand")
+					);
+
+					fragment_events["44_show"] = slides["44_resultats.html"].toggle_visible.bind(slides["44_resultats.html"]);
+					fragment_events["44_quality"] = slides["44_resultats.html"].toggle_material.bind(slides["44_resultats.html"]);
+					fragment_events["44_clipping"] = slides["44_resultats.html"].toggle_clipping.bind(slides["44_resultats.html"]);
+
+				});
+
+				loadSlideHtml("45_resultats.html", "./Slides/45_resultats.html").then(() => { 
+					slides["45_resultats.html"].init(
+						document.getElementById("results_vessels")
+					);
+
+					// fragment_events["45_show"] = slides["45_resultats.html"].toggle_visible.bind(slides["45_resultats.html"]);
+					// fragment_events["45_quality"] = slides["45_resultats.html"].toggle_material.bind(slides["45_resultats.html"]);
+					// fragment_events["45_clipping"] = slides["45_resultats.html"].toggle_clipping.bind(slides["45_resultats.html"]);
+
+					slides["45_resultats.html"].open()
+				});
+
+				loadSlideHtml("46_medical.html", "./Slides/46_medical.html").then(() => { 
+					slides["46_medical.html"].init(
+						document.getElementById("results_lungs")
+					);
+
+					// fragment_events["45_show"] = slides["46_medical.html"].toggle_visible.bind(slides["46_medical.html"]);
+					// fragment_events["45_quality"] = slides["46_medical.html"].toggle_material.bind(slides["46_medical.html"]);
+					// fragment_events["45_clipping"] = slides["46_medical.html"].toggle_clipping.bind(slides["46_medical.html"]);
+
+					// slides["46_medical.html"].open()
+				});
+				loadSlideHtml("49_theorique.html");
+				loadSlideHtml("50_theorique.html");
+				loadSlideHtml("51_perspectives.html");
+
+				// Reveal.slide(36);
+				Reveal.slide(48);
 			});
 
 			
