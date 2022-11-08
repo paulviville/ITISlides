@@ -9,40 +9,6 @@
 	</head>
 
 	<body>
-		<script>
-			function includeHTML() {
-				var z, i, elmnt, file, xhttp;
-				/*loop through a collection of all HTML elements:*/
-				z = document.getElementsByTagName("*");
-				for (i = 0; i < z.length; i++) {
-					elmnt = z[i];
-					/*search for elements with a certain atrribute:*/
-					file = elmnt.getAttribute("include-slide");
-					if (file) {
-						/*make an HTTP request using the attribute value as the file name:*/
-						xhttp = new XMLHttpRequest();
-						xhttp.onreadystatechange = function() {
-							if (this.readyState == 4) {
-								if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-								if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-								/*remove the attribute, and call this function once more:*/
-								elmnt.removeAttribute("include-slide");
-								includeHTML();
-							}
-						}      
-						xhttp.open("GET", file, true);
-						xhttp.send();
-						/*exit the function:*/
-						return;
-					}
-				}
-			};
-		</script>
-
-		<script type="module">
-		</script>
-		<!-- <div id="stats"></div> -->
-		
 		<div class="reveal">
 			<div class="slides" id="slides">
 
@@ -95,6 +61,7 @@
 				<section id="44_resultats.html"></section>
 				<section id="45_resultats.html"></section>
 				<section id="46_medical.html"></section>
+				<section id="48_anime.html"></section>
 
 				<section id="49_theorique.html"></section>
 				<section id="50_theorique.html"></section>
@@ -122,6 +89,7 @@
 			import {slide_results4} from './Slides/44_resultats.js';
 			import {slide_results5} from './Slides/45_resultats.js';
 			import {slide_medical0} from './Slides/46_medical.js';
+			import {slide_anime} from './Slides/48_anime.js';
 
 			import RevealNotes from './Reveal/notes/notes.esm.js'
 
@@ -140,6 +108,7 @@
 			slides["44_resultats.html"] = slide_results4;
 			slides["45_resultats.html"] = slide_results5;
 			slides["46_medical.html"] = slide_medical0;
+			slides["48_anime.html"] = slide_anime;
 			// slides[] = ;
 
 			let active_slide;
@@ -358,14 +327,9 @@
 					slides["45_resultats.html"].init(
 						document.getElementById("results_vessels")
 					);
-
-					// fragment_events["45_show"] = slides["45_resultats.html"].toggle_visible.bind(slides["45_resultats.html"]);
-					// fragment_events["45_quality"] = slides["45_resultats.html"].toggle_material.bind(slides["45_resultats.html"]);
-					// fragment_events["45_clipping"] = slides["45_resultats.html"].toggle_clipping.bind(slides["45_resultats.html"]);
-
-					slides["45_resultats.html"].open()
 				});
 
+				
 				loadSlideHtml("46_medical.html", "./Slides/46_medical.html").then(() => { 
 					slides["46_medical.html"].init(
 						document.getElementById("results_lungs")
@@ -377,12 +341,20 @@
 
 					// slides["46_medical.html"].open()
 				});
+
+				loadSlideHtml("48_anime.html", "./Slides/48_anime.html").then(() => { 
+					slides["48_anime.html"].init(
+						document.getElementById("animated_lungs")
+					);
+					slides["48_anime.html"].open()
+				});
+
 				loadSlideHtml("49_theorique.html");
 				loadSlideHtml("50_theorique.html");
 				loadSlideHtml("51_perspectives.html");
 
 				// Reveal.slide(36);
-				Reveal.slide(48);
+				// Reveal.slide(45);
 			});
 
 			
