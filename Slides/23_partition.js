@@ -130,7 +130,6 @@ export const slide_sphere_partition = new Slide(
 		this.group.add(points);
 
 		let branching_point_renderer = new Renderer(sphere_graph);
-		console.log(branching_point_renderer)
 		branching_point_renderer.edges.create({layer: points_layer, material: meshEdgeMaterial}).addTo(this.group);
 
 		let raw_delaunay_renderer = new RendererSpherical(sphere_raw);

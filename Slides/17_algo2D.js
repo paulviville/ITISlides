@@ -125,7 +125,8 @@ export const slide_Algo2D = new Slide(
 				contextHand3.drawImage(glRenderer.domElement, 0, 0);
 				this.camera.layers.disable(meshLayer);
 
-				requestAnimationFrame(this.loop.bind(this));
 			}
+			requestAnimationFrame(this.loop.bind(this));
+			this.running = !this.running
 		}
 	});

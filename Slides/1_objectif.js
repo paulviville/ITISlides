@@ -64,7 +64,6 @@ export const slide_objectif = new Slide(
 
 		let vessels_skel = loadGraph('cg', Vessels.vessels_cg);
 		this.vessels_skel = new Renderer(vessels_skel);
-		console.info(this.vessels_skel);
 		this.vessels_skel.edges.create({layer: skeleton_layer, material: mesh_edge_material}).addTo(this.group);
 
 		// this.vessels_vol = Display.load_volumes_view("mesh", lung_mesh);

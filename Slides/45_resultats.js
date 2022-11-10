@@ -58,20 +58,6 @@ export const slide_results5 = new Slide(
 		this.vesselsScaf = new Renderer(vesselsScaf);
 		this.vesselsScaf.edges.create({layer: surfaceLayer, material: scafEdgeMaterial, size: 0.75}).addTo(this.group);
 
-		// this.vesselsSkel.faces.create({layer: surfaceLayer, side: THREE.DoubleSide}).addTo(this.group);
-
-		// const scale = 0.0075;
-		// const offset = -0.36;
-		// this.vesselsSurface.scale.set(scale,scale,scale);
-		// this.vesselsSurface.position.set(0,0, offset);
-		// // this.vesselsSkel.edges.mesh.scale.set(scale,scale,scale);
-		// // this.vesselsSkel.edges.mesh.position.set(0,0,offset);
-		// // this.vesselsSkel.faces.mesh.scale.set(scale,scale,scale);
-		// // this.vesselsSkel.faces.mesh.position.set(0,0,offset);
-		// this.vesselsVol.scale.set(scale,scale,scale);
-		// this.vesselsVol.position.set(0,0,offset);
-
-
 		const axis = new THREE.Vector3(0, 1, 0);
 		this.clock = new Clock(true);
 		this.time = 0;
@@ -90,12 +76,13 @@ export const slide_results5 = new Slide(
 		};
 
 		this.vesselsScaf.edges.mesh.position.set(-0.00825,-0.0025,0)
-		this.vesselsSkel.edges.mesh.position.set(0.00905,0.0040185,0)
+		this.vesselsSkel.edges.mesh.position.set(0.00605,0.0040185,0.0075)
 		this.vesselsSurface.position.set(0.005,0.0035,0)
 		// this.vesselsVol.position.set(0.0125,0.0065,0)
 
+		this.rend = true;
 		this.loop = function(){
-			if(this.running){
+			if(this.rend){
 				glRenderer.setSize(DOM_hexmesh.width, DOM_hexmesh.height);
 				this.time += this.clock.getDelta() * this.on;
 				this.group.setRotationFromAxisAngle(axis, Math.PI / 50 * this.time);
@@ -108,7 +95,9 @@ export const slide_results5 = new Slide(
 				this.camera.layers.disable(surfaceLayer);
 				this.camera.layers.disable(meshLayer);
 
-				requestAnimationFrame(this.loop.bind(this));
+				// requestAnimationFrame(this.loop.bind(this));
 			}
+				requestAnimationFrame(this.loop.bind(this));
+				this.rend = !this.rend;
 		}
 	});

@@ -96,11 +96,13 @@ export const slide_brut = new Slide(
 				this.handSurface.material.opacity = 0.5;
 				this.handSurface.material.side = THREE.FrontSide;
 				this.camera.layers.enable(rawLayer);
+				this.camera.layers.enable(surfaceLayer);
 				glRenderer.setSize(DOM_Input.width, DOM_Input.height);
 				glRenderer.render(this.scene, this.camera);
 				context_input.clearRect(0, 0, DOM_Input.width, DOM_Input.height);
 				context_input.drawImage(glRenderer.domElement, 0, 0)
 				this.camera.layers.disable(rawLayer);
+				this.camera.layers.disable(surfaceLayer);
 
 
 				this.camera.layers.enable(meshLayer);

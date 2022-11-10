@@ -18,7 +18,7 @@ import {glRenderer, scafEdgeMaterial, meshEdgeMaterial, ambiantLightInt, pointLi
 export const slide_Algo1D = new Slide(
 	function(DOM_Horse0, DOM_Horse1, DOM_Horse2, DOM_Horse3, DOM_Horse4)
 	{
-		this.camera = new THREE.PerspectiveCamera(75, DOM_Horse0.width / DOM_Horse0.height, 0.1, 1000.0);
+		this.camera = new THREE.PerspectiveCamera(45, DOM_Horse0.width / DOM_Horse0.height, 0.1, 1000.0);
 		this.camera.position.set(0, 0.3, 0.85);
 
 		const surfaceLayer = 0;

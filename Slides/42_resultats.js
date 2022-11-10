@@ -118,9 +118,9 @@ export const slide_results2 = new Slide(
 		// this.dilo_surface.material.side = THREE.BackSide;
 		// this.metatron_surface.material.side = THREE.BackSide;
 
-
+		this.rend = true;
 		this.loop = function(){
-			if(this.running){
+			if(this.rend){
 				this.time += this.clock.getDelta() * this.on;
 				this.group.setRotationFromAxisAngle(axis, Math.PI / 90 * this.time);
 
@@ -138,7 +138,11 @@ export const slide_results2 = new Slide(
 				context_output.drawImage(glRenderer.domElement, 0, 0);
 				this.camera1.layers.disable(dinoLayer);
 
-				requestAnimationFrame(this.loop.bind(this));
+				// requestAnimationFrame(this.loop.bind(this));
 			}
+			// else
+				requestAnimationFrame(this.loop.bind(this));
+
+			this.rend = !this.rend;
 		}
 	});

@@ -6,6 +6,10 @@ import Renderer from '../CMapJS/Rendering/Renderer.js';
 import * as Display from '../CMapJS/Utils/Display.js';
 import * as Vessels from '../Files/vessels_files.js';
 import * as Lung from '../Files/anim_files.js';
+import * as Lung0 from '../Files/anim0_files.js';
+import * as Lung1 from '../Files/anim1_files.js';
+import * as Lung2 from '../Files/anim2_files.js';
+import * as Lung3 from '../Files/anim3_files.js';
 import {loadCMap2} from '../CMapJS/IO/SurfaceFormats/CMap2IO.js';
 import {loadGraph} from '../CMapJS/IO/GraphFormats/GraphIO.js';
 import {loadIncidenceGraph} from '../CMapJS/IO/IncidenceGraphFormats/IncidenceGraphIO.js';
@@ -19,16 +23,6 @@ const mesh_color = new THREE.Color(0x60c3f4);
 
 let v_shader = `
 in vec3 position;
-
-in vec4 center;
-in vec3 v0;
-in vec3 v1;
-in vec3 v2;
-in vec3 v3;
-in vec3 v4;
-in vec3 v5;
-in vec3 v6;
-in vec3 v7;
 
 uniform float timer;
 uniform mat4 modelMatrix;
@@ -50,19 +44,6 @@ out vec3 col;
 
 void main() {
 	int i, j;
-	// i = gl_InstanceID % 800;
-	// j = gl_InstanceID / 800;
-	// vec3 center0 = texelFetch(centerTexture, ivec2(i, j), 0).xyz;
-	// i = (gl_InstanceID + nbHex) % 800;
-	// j = (gl_InstanceID + nbHex) / 800;
-	// vec3 center1 = texelFetch(centerTexture, ivec2(i, j), 0).xyz;
-	i = (gl_InstanceID + nbHex*2) % 800;
-	j = (gl_InstanceID + nbHex*2) / 800;
-	vec3 center2 = texelFetch(centerTexture, ivec2(i, j), 0).xyz;
-	i = (gl_InstanceID + nbHex*3) % 800;
-	j = (gl_InstanceID + nbHex*3) / 800;
-	vec3 center3 = texelFetch(centerTexture, ivec2(i, j), 0).xyz;
-
 	vec3 center;
 	vec3 p = position; // useless but firefox needs it
 	if(timer < 0.3333) {
@@ -99,7 +80,7 @@ void main() {
 		vec3 center2 = texelFetch(centerTexture, ivec2(i, j), 0).xyz;
 		i = (gl_InstanceID + nbHex*3) % 800; j = (gl_InstanceID + nbHex*3) / 800;
 		vec3 center3 = texelFetch(centerTexture, ivec2(i, j), 0).xyz;
-		center = mix(center2, center3, 3.*(timer-0.6666));
+		center = mix(center2, center3, 3.*(clamp(timer, 0.6666, 1.0)-0.6666));
 
 		i = (8*(gl_InstanceID + nbHex*2) + gl_VertexID) % 800;
 		j = (8*(gl_InstanceID + nbHex*2) + gl_VertexID) / 800;
@@ -113,11 +94,12 @@ void main() {
 	vec3 plane = normalize(vec3(-1, 0, -2));
 	float scale = max_scale;
 
-	vec3 c = vec3(modelMatrix * vec4(center, 1.0));
-	float value = dot(plane, vec3(modelMatrix * vec4(center , 1.0)));
-	value = clamp((value - min_clipping)/(max_clipping - min_clipping), 0.0, 1.0);
-	scale *= (value);
+	
 	if(clipping == 1){
+		vec3 c = vec3(modelMatrix * vec4(center, 1.0));
+		float value = dot(plane, vec3(modelMatrix * vec4(center , 1.0)));
+		value = clamp((value - min_clipping)/(max_clipping - min_clipping), 0.0, 1.0);
+		scale *= (value);
 		p = (p * scale) + center;
 	}
 	else
@@ -158,37 +140,19 @@ void main(){
 
 
 function loadAnim(){
-	const g0 = volumesGeometryFromStr("mesh", Lung.lung0_mesh);
-	const g1 = volumesGeometryFromStr("mesh", Lung.lung1_mesh);
-	const g2 = volumesGeometryFromStr("mesh", Lung.lung2_mesh);
-	const g3 = volumesGeometryFromStr("mesh", Lung.lung3_mesh);
+	const g0 = volumesGeometryFromStr("mesh", Lung0.lung0_mesh);
+	const g1 = volumesGeometryFromStr("mesh", Lung1.lung1_mesh);
+	const g2 = volumesGeometryFromStr("mesh", Lung2.lung2_mesh);
+	const g3 = volumesGeometryFromStr("mesh", Lung3.lung3_mesh);
 	const nb_hex = g0.hex.length;
 
-	const varrays = [
-		new Float32Array(nb_hex * 3),
-		new Float32Array(nb_hex * 3),
-		new Float32Array(nb_hex * 3),
-		new Float32Array(nb_hex * 3),
-		new Float32Array(nb_hex * 3),
-		new Float32Array(nb_hex * 3),
-		new Float32Array(nb_hex * 3),
-		new Float32Array(nb_hex * 3)
-	];
-
-	const positions = new Float32Array(800*1600*4);
-
 	let n = 0;
-	let m = 0;
-	// const centers = new Float32Array(nb_hex * 16);
 	const centers = new Float32Array(800*400 * 4);
-	// const centers = new Float32Array(nb_hex * 4);
-	// const centers = new Uint8Array(nb_hex * 4);
+	const positions = new Float32Array(800*1600*4);
 	const P = [new THREE.Vector3, new THREE.Vector3, new THREE.Vector3, new THREE.Vector3,
 		new THREE.Vector3, new THREE.Vector3, new THREE.Vector3, new THREE.Vector3
 	];
 	let center = new THREE.Vector3;
-
-	
 
 	for(let h = 0; h < g0.hex.length; h++){
 		center.set(0, 0, 0);
@@ -205,7 +169,7 @@ function loadAnim(){
 			positions[m2++] = P[i].z - center.z;
 			positions[m2++] = 0;
 		}
-		m+=3;
+
 		n = 4*h;
 		centers[n] = center.x;
 		centers[n+1] = center.y;
@@ -276,14 +240,9 @@ function loadAnim(){
 		centers[n+3] = 0;
 	}
 
-	const centerTexture = new THREE.DataTexture(centers, 800, 400,THREE.RGBAFormat, THREE.FloatType);
-	const positionTexture = new THREE.DataTexture(positions, 800, 1600,THREE.RGBAFormat, THREE.FloatType);
-	// const v0Texture = new THREE.DataTexture(centers, 800, 400,THREE.RGBAFormat, THREE.FloatType);
-	// centerTexture.type = THREE.FloatType;
-	// const centerTexture = new THREE.DataTexture(centers, 1, g0.hex.length);
-	centerTexture.needsUpdate = true;
+	const centerTexture = new THREE.DataTexture(centers, 800, 400, THREE.RGBAFormat, THREE.FloatType);
+	const positionTexture = new THREE.DataTexture(positions, 800, 1600, THREE.RGBAFormat, THREE.FloatType);
 
-	console.log(centerTexture)
 	const geometry = new THREE.BufferGeometry();
 	const pos = [
 		0.1, -0.1, -0.1,	-0.1, -0.1, -0.1,	-0.1, 0.1, -0.1,	0.1, 0.1, -0.1,
@@ -298,17 +257,6 @@ function loadAnim(){
 
 	geometry.setIndex(indices);
 	geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( pos, 3 ) );
-	geometry.setAttribute( 'center', new THREE.InstancedBufferAttribute( centers, 4 ) );
-	// geometry.setAttribute( 'center', new THREE.InstancedBufferAttribute( centers, 16 ) );
-	// geometry.setAttribute( 'center1', new THREE.InstancedBufferAttribute( centers1, 3 ) );
-	geometry.setAttribute( 'v0', new THREE.InstancedBufferAttribute( varrays[0], 3 ) );
-	geometry.setAttribute( 'v1', new THREE.InstancedBufferAttribute( varrays[1], 3 ) );
-	geometry.setAttribute( 'v2', new THREE.InstancedBufferAttribute( varrays[2], 3 ) );
-	geometry.setAttribute( 'v3', new THREE.InstancedBufferAttribute( varrays[3], 3 ) );
-	geometry.setAttribute( 'v4', new THREE.InstancedBufferAttribute( varrays[4], 3 ) );
-	geometry.setAttribute( 'v5', new THREE.InstancedBufferAttribute( varrays[5], 3 ) );
-	geometry.setAttribute( 'v6', new THREE.InstancedBufferAttribute( varrays[6], 3 ) );
-	geometry.setAttribute( 'v7', new THREE.InstancedBufferAttribute( varrays[7], 3 ) );
 
 	let material = new THREE.RawShaderMaterial( {
 		glslVersion: THREE.GLSL3,
@@ -338,8 +286,8 @@ function loadAnim(){
 export const slide_anime = new Slide(
 	function(DOM_hexmesh)
 	{
-		this.camera = new THREE.PerspectiveCamera(75, DOM_hexmesh.width / DOM_hexmesh.height, 0.1, 1000.0);
-		this.camera.position.set(0, 0,16);
+		this.camera = new THREE.PerspectiveCamera(45, DOM_hexmesh.width / DOM_hexmesh.height, 0.1, 1000.0);
+		this.camera.position.set(0, 0,26);
 		
 		const surfaceLayer = 0;
 		const meshLayer = 1;
@@ -364,24 +312,26 @@ export const slide_anime = new Slide(
 		this.group = new THREE.Group;
 		this.scene.add(this.group);
 
-
-
 		this.vesselsVol = loadAnim();
 		this.vesselsVol.layers.set(meshLayer);
 		this.group.add(this.vesselsVol);
 
-		// this.vesselsSkel.faces.create({layer: surfaceLayer, side: THREE.DoubleSide}).addTo(this.group);
+		this.vesselsSurf0 = Display.loadSurfaceView("off", Lung.lung0_off, {transparent: true, opacity: 0.1, color: new THREE.Color(0xFFFF00)});
+		this.vesselsSurf0.layers.set(meshLayer);
+		this.group.add(this.vesselsSurf0);
 
-		// const scale = 0.0075;
-		// const offset = -0.36;
-		// this.vesselsSurface.scale.set(scale,scale,scale);
-		// this.vesselsSurface.position.set(0,0, offset);
-		// // this.vesselsSkel.edges.mesh.scale.set(scale,scale,scale);
-		// // this.vesselsSkel.edges.mesh.position.set(0,0,offset);
-		// // this.vesselsSkel.faces.mesh.scale.set(scale,scale,scale);
-		// // this.vesselsSkel.faces.mesh.position.set(0,0,offset);
-		// this.vesselsVol.scale.set(scale,scale,scale);
-		// this.vesselsVol.position.set(0,0,offset);
+		this.vesselsSurf1 = Display.loadSurfaceView("off", Lung.lung1_off, {transparent: true, opacity: 0.1, color: new THREE.Color(0xFF0000)});
+		this.vesselsSurf1.layers.set(meshLayer);
+		this.group.add(this.vesselsSurf1);
+
+		this.vesselsSurf2 = Display.loadSurfaceView("off", Lung.lung2_off, {transparent: true, opacity: 0.1, color: new THREE.Color(0x00FF00)});
+		this.vesselsSurf2.layers.set(meshLayer);
+		this.group.add(this.vesselsSurf2);
+
+		this.vesselsSurf3 = Display.loadSurfaceView("off", Lung.lung3_off, {transparent: true, opacity: 0.1, color: new THREE.Color(0x0000FF)});
+		this.vesselsSurf3.layers.set(meshLayer);
+		this.group.add(this.vesselsSurf3);
+
 
 
 		const axis = new THREE.Vector3(0, 1, 0);
@@ -395,24 +345,33 @@ export const slide_anime = new Slide(
 		this.toggleVisible = function(){
 			this.vesselsVol.visible = !this.vesselsVol.visible;
 		};
+		// this.toggleVisible();
 
 		this.on = 1;
 		this.pause = function(){
 			this.on = 1 - this.on;
 		};
 
-		// this.vesselsScaf.edges.mesh.position.set(-0.00825,-0.0025,0)
-		// this.vesselsSkel.edges.mesh.position.set(0.00905,0.0040185,0)
-		// this.vesselsSurface.position.set(0.005,0.0035,0)
 		this.vesselsVol.position.set(0,11,0)
 		this.vesselsVol.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
-		console.log(this.vesselsVol.material)
+		this.vesselsSurf0.position.set(0,11,0)
+		this.vesselsSurf0.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
+		this.vesselsSurf1.position.set(0,11,0)
+		this.vesselsSurf1.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
+		this.vesselsSurf2.position.set(0,11,0)
+		this.vesselsSurf2.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
+		this.vesselsSurf3.position.set(0,11,0)
+		this.vesselsSurf3.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
+		this.group.setRotationFromAxisAngle(axis, Math.PI);
+		this.vesselsSurf0.material.side = THREE.BackSide;
+		this.vesselsSurf1.material.side = THREE.BackSide;
+		this.vesselsSurf2.material.side = THREE.BackSide;
+
 		this.loop = function(){
 			if(this.running){
 				glRenderer.setSize(DOM_hexmesh.width, DOM_hexmesh.height);
 				this.time += this.clock.getDelta() * this.on;
-				this.vesselsVol.material.uniforms.timer.value = (1+Math.sin(this.time*0.7))/2+0.3333;
-				this.group.setRotationFromAxisAngle(axis, Math.PI);
+				this.vesselsVol.material.uniforms.timer.value = (1+Math.sin(this.time*0.6))/2;
 
 				this.camera.layers.enable(surfaceLayer);
 				this.camera.layers.enable(meshLayer);
