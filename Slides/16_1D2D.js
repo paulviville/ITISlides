@@ -53,10 +53,21 @@ export const slide_1D2D = new Slide(
 		this.hand_skel.edges.create({layer: mixte_layer, material: meshEdgeMaterial}).addTo(this.group);
 		this.hand_skel.faces.create({layer: mixte_layer, side: THREE.DoubleSide}).addTo(this.group);
 
+		this.hand1DRawVol = Display.loadVolumesView("mesh", Hand.hand1DRaw_mesh);
+		this.hand1DRawVol.layers.set(curve_layer);
+		this.group.add(this.hand1DRawVol);
+
+
 		const hand2_skel = loadIncidenceGraph('ig', Hand.hand1D_ig);
 		this.hand2_skel = new Renderer(hand2_skel);
 		this.hand2_skel.edges.create({layer: curve_layer, material: meshEdgeMaterial}).addTo(this.group);
 		// this.hand_skel.faces.create({layer: mixte_layer, side: THREE.DoubleSide}).addTo(this.group);
+
+		this.handRawVol = Display.loadVolumesView("mesh", Hand.handRaw_mesh);
+		this.handRawVol.layers.set(mixte_layer);
+		this.group.add(this.handRawVol);
+
+		// handGroup.add(this.handRawVol);
 
 		const axis = new THREE.Vector3(0, 1, 0);
 		this.clock = new Clock(true);
@@ -65,6 +76,12 @@ export const slide_1D2D = new Slide(
 		this.toggle_clipping = function(){
 			this.holes_vol.material.uniforms.clipping.value = 1 - this.holes_vol.material.uniforms.clipping.value;
 		};
+
+		this.toggle_visible = function(){
+			this.handRawVol.visible = !this.handRawVol.visible;
+			this.hand1DRawVol.visible = !this.hand1DRawVol.visible;
+		};
+		this.toggle_visible();
 
 		this.on = 1;
 		this.pause = function(){
@@ -82,6 +99,8 @@ export const slide_1D2D = new Slide(
 		const offsetAxisHand = new THREE.Vector3(0, 0.3, -0.9);
 		this.hand_surface.setRotationFromAxisAngle(offsetAxisHand, offsetAngleHand);
 		// this.hand_vol.setRotationFromAxisAngle(offsetAxisHand, offsetAngleHand);
+		this.handRawVol.setRotationFromAxisAngle(offsetAxisHand, offsetAngleHand);
+		this.hand1DRawVol.setRotationFromAxisAngle(offsetAxisHand, offsetAngleHand);
 		this.hand_surface.setRotationFromAxisAngle(offsetAxisHand, offsetAngleHand);
 		this.hand_skel.edges.mesh.setRotationFromAxisAngle(offsetAxisHand, offsetAngleHand);
 		this.hand_skel.faces.mesh.setRotationFromAxisAngle(offsetAxisHand, offsetAngleHand);
@@ -92,7 +111,7 @@ export const slide_1D2D = new Slide(
 		this.loop = function(){
 			if(this.running){
 				this.time += this.clock.getDelta() * this.on;
-				this.group.setRotationFromAxisAngle(axis, Math.PI / 90 * this.time);
+				this.group.setRotationFromAxisAngle(axis, Math.PI / 120 * this.time);
 
 				this.hand_surface.material.opacity = 0.5;
 				this.hand_surface.material.side = THREE.FrontSide;

@@ -12,7 +12,6 @@
 		<div class="reveal">
 			<div class="slides" id="slides">
 
-				
 				<!-- Intro -->
 				<section id="0_titre.html" data-visibility="uncounted"></section>
 				<section id="1_objectifs.html"></section>
@@ -28,11 +27,11 @@
 				<section id="11_methodes_spe.html"></section>
 				<section id="12_methodes_courbes.html"></section>
 				<section id="13_squelette.html"></section>
-				<section id="14_squelette.html"></section>
 				<section id="15_algo1D.html"></section>
 				<section id="16_1D2D.html"></section>
 				<section id="17_algo2D.html"></section>
 				<section id="18_intuitions.html"></section>
+				<section id="14_squelette.html"></section>
 				<section id="19_embranchements.html"></section>
 				<section id="20_embranchements.html"></section>
 				<section id="21_embranchements.html"></section>
@@ -55,11 +54,11 @@
 				<section id="38_refine.html"></section>
 				<section id="39_proprietes.html"></section>
 				<section id="40_limites.html"></section>
+				<section id="45_resultats.html"></section>
 				<section id="41_resultats.html"></section>
 				<section id="42_resultats.html"></section>
 				<section id="43_resultats.html"></section>
 				<section id="44_resultats.html"></section>
-				<section id="45_resultats.html"></section>
 				<section id="46_medical.html"></section>
 				<section id="47_anime.html"></section>
 				<section id="48_anime.html"></section>
@@ -154,7 +153,8 @@
 				center: true,
 				plugins: [RevealNotes]
 			}).then(() => {
-
+				// console.log(document.getElementsByClassName("progress")[0].innerHTML += ("<p>test</p>"));
+				// console.log(document.getElementsByClassName("progress")[0]);
 				loadSlideHtml("0_titre.html");
 				loadSlideHtml("1_objectifs.html").then(() => { 
 					slide_objectif.init(
@@ -196,6 +196,7 @@
 						document.getElementById("squelette_1D"),
 						document.getElementById("squelette_2D")
 					);
+					fragment_events["16_show"] = slides["16_1D2D.html"].toggle_visible.bind(slides["16_1D2D.html"]);
 				});
 
 				loadSlideHtml("17_algo2D.html").then(() => { 

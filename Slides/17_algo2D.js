@@ -70,6 +70,7 @@ export const slide_Algo2D = new Slide(
 		this.handSkel = new Renderer(handSkel);
 		this.handSkel.edges.create({layer: skelLayer, material: meshEdgeMaterial, size: 2}).addTo(handGroup);
 		this.handSkel.faces.create({layer: skelLayer, side: THREE.DoubleSide}).addTo(handGroup);
+		this.handSkel.vertices.create({layer: skelLayer, size:0.01, color: new THREE.Color(0.2, 0.8, 0.2)}).addTo(handGroup);
 
 		const handScaf = loadCMap2('off', Hand.handScaffold_off);
 		this.handScaf = new Renderer(handScaf);

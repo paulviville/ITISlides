@@ -17,10 +17,10 @@ import {glRenderer, meshEdgeColor, meshEdgeMaterial, ambiantLightInt, pointLight
 export const slide_results2 = new Slide(
 	function(DOM_metatron, DOM_dino)
 	{
-		this.camera0 = new THREE.PerspectiveCamera(75, DOM_metatron.width / DOM_metatron.height, 0.1, 1000.0);
-		this.camera0.position.set(0, 0, 0.7);
-		this.camera1 = new THREE.PerspectiveCamera(75, DOM_dino.width / DOM_dino.height, 0.1, 1000.0);
-		this.camera1.position.set(0, 0, 1);
+		this.camera0 = new THREE.PerspectiveCamera(45, DOM_metatron.width / DOM_metatron.height, 0.1, 1000.0);
+		this.camera0.position.set(0, 0, 1.3);
+		this.camera1 = new THREE.PerspectiveCamera(45, DOM_dino.width / DOM_dino.height, 0.1, 1000.0);
+		this.camera1.position.set(0, 0, 2);
 		
 		const dinoLayer = 1;
 		const metatronLayer = 2;
