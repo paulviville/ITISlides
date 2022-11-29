@@ -2,12 +2,16 @@ import Slide from './Slide.js';
 
 import * as THREE from '../CMapJS/Libs/three.module.js';
 import {OrbitControls} from '../CMapJS/Libs/OrbitsControls.js';
-import * as Optim from '../Files/optim_files.js';
+import Renderer from '../CMapJS/Rendering/Renderer.js';
+import * as Display from '../CMapJS/Utils/Display.js';
+import * as Sculpture from '../Files/sculpture_files.js';
+import {loadIncidenceGraph} from '../CMapJS/IO/IncidenceGraphFormats/IncidenceGraphIO.js';
 import {Clock} from '../CMapJS/Libs/three.module.js';
 
-import {glRenderer, scafEdgeMaterial, meshEdgeMaterial, ambiantLightInt, pointLightInt} from './parameters.js';
-
+import {glRenderer, meshEdgeColor, meshEdgeMaterial, ambiantLightInt, pointLightInt} from './parameters.js';
 import {geometryFromStr as volumesGeometryFromStr} from '../CMapJS/IO/VolumesFormats/CMap3IO.js';
+
+
 
 const mesh_color = new THREE.Color(0x60c3f4);
 
@@ -130,10 +134,10 @@ void main(){
 
 
 function loadAnim(){
-	const g0 = volumesGeometryFromStr("mesh", Optim.optim0_mesh);
-	const g1 = volumesGeometryFromStr("mesh", Optim.optim1_mesh);
-	const g2 = volumesGeometryFromStr("mesh", Optim.optim2_mesh);
-	const g3 = volumesGeometryFromStr("mesh", Optim.optim3_mesh);
+	const g0 = volumesGeometryFromStr("mesh", Sculpture.sculpt0_mesh);
+	const g1 = volumesGeometryFromStr("mesh", Sculpture.sculpt1_mesh);
+	const g2 = volumesGeometryFromStr("mesh", Sculpture.sculpt2_mesh);
+	// const g3 = volumesGeometryFromStr("mesh", Sculpture.sculpt2_mesh);
 	const nb_hex = g0.hex.length;
 
 	let n = 0;
@@ -211,7 +215,7 @@ function loadAnim(){
 		n = 4*(3*nb_hex + h);
 		center.set(0, 0, 0);
 		for(let i = 0; i < 8; ++i){
-			P[i].fromArray(g3.v[g3.hex[h][i]])
+			P[i].fromArray(g2.v[g2.hex[h][i]])
 			center.add(P[i]);
 		}
 		center.divideScalar(8);
@@ -273,11 +277,12 @@ function loadAnim(){
 	return mesh;
 }
 
-export const slide_refine = new Slide(
+
+export const slide_results4_1 = new Slide(
 	function(DOM_hexmesh)
 	{
 		this.camera = new THREE.PerspectiveCamera(45, DOM_hexmesh.width / DOM_hexmesh.height, 0.1, 1000.0);
-		this.camera.position.set(0, 0, 1.5);
+		this.camera.position.set(0, 0, 1.4);
 		
 		const surfaceLayer = 0;
 		const meshLayer = 1;
@@ -302,21 +307,31 @@ export const slide_refine = new Slide(
 		this.group = new THREE.Group;
 		this.scene.add(this.group);
 
-		this.vesselsVol = loadAnim();
-		this.vesselsVol.layers.set(meshLayer);
-		this.group.add(this.vesselsVol);
+		this.metatronSurface = Display.loadSurfaceView("off", Sculpture.sculpture_off, {transparent: true, opacity: 0.2});
+		this.metatronSurface.layers.set(surfaceLayer);
+		this.group.add(this.metatronSurface);
 
-		// this.vesselsSurf0 = Display.loadSurfaceView("off", Lung.lung1_off, {transparent: true, opacity: 0.1, color: new THREE.Color(0xFF0000)});
-		// this.vesselsSurf0.layers.set(meshLayer);
-		// this.group.add(this.vesselsSurf0);
+		// this.metatronVol = Display.loadVolumesView("mesh", Sculpture.sculpture_mesh);
+		this.metatronVol = loadAnim();
+		this.metatronVol.layers.set(meshLayer);
+		this.group.add(this.metatronVol);
 
-		// this.vesselsSurf1 = Display.loadSurfaceView("off", Lung.lung2_off, {transparent: true, opacity: 0.1, color: new THREE.Color(0x00FF00)});
-		// this.vesselsSurf1.layers.set(meshLayer);
-		// this.group.add(this.vesselsSurf1);
+		const metatronSkel = loadIncidenceGraph('ig', Sculpture.sculpture_ig);
+		this.metatronSkel = new Renderer(metatronSkel);
+		this.metatronSkel.edges.create({layer: surfaceLayer, material: meshEdgeMaterial, size: 1}).addTo(this.group);
+		this.metatronSkel.faces.create({layer: surfaceLayer, side: THREE.DoubleSide}).addTo(this.group);
+		this.metatronSurface.material.side = THREE.BackSide;
 
-		// this.vesselsSurf2 = Display.loadSurfaceView("off", Lung.lung3_off, {transparent: true, opacity: 0.1, color: new THREE.Color(0x0000FF)});
-		// this.vesselsSurf2.layers.set(meshLayer);
-		// this.group.add(this.vesselsSurf2);
+		// const scale = 0.0075;
+		// const offset = -0.36;
+		// this.metatronSurface.scale.set(scale,scale,scale);
+		// this.metatronSurface.position.set(0,0, offset);
+		// this.metatronSkel.edges.mesh.scale.set(scale,scale,scale);
+		// this.metatronSkel.edges.mesh.position.set(0,0,offset);
+		// this.metatronSkel.faces.mesh.scale.set(scale,scale,scale);
+		// this.metatronSkel.faces.mesh.position.set(0,0,offset);
+		// this.metatronVol.scale.set(scale,scale,scale);
+		// this.metatronVol.position.set(0,0,offset);
 
 
 		const axis = new THREE.Vector3(0, 1, 0);
@@ -324,11 +339,11 @@ export const slide_refine = new Slide(
 		this.time = 0;
 		
 		this.toggleClipping = function(){
-			this.vesselsVol.material.uniforms.clipping.value = 1 - this.vesselsVol.material.uniforms.clipping.value;
+			this.metatronVol.material.uniforms.clipping.value = 1 - this.metatronVol.material.uniforms.clipping.value;
 		};
 		// this.toggleClipping();
 		this.toggleVisible = function(){
-			this.vesselsVol.visible = !this.vesselsVol.visible;
+			this.metatronVol.visible = !this.metatronVol.visible;
 		};
 		// this.toggleVisible();
 
@@ -337,25 +352,12 @@ export const slide_refine = new Slide(
 			this.on = 1 - this.on;
 		};
 
-		this.vesselsVol.position.set(-0.25,0,0)
-		// this.vesselsVol.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
-		// this.vesselsSurf0.position.set(0,11,0)
-		// this.vesselsSurf0.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
-		// this.vesselsSurf1.position.set(0,11,0)
-		// this.vesselsSurf1.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
-		// this.vesselsSurf2.position.set(0,11,0)
-		// this.vesselsSurf2.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
-		// this.group.setRotationFromAxisAngle(axis, Math.PI);
-		// this.vesselsSurf0.material.side = THREE.BackSide;
-		// this.vesselsSurf1.material.side = THREE.BackSide;
-		// this.vesselsSurf2.material.side = THREE.BackSide;
-
 		this.loop = function(){
 			if(this.running){
 				glRenderer.setSize(DOM_hexmesh.width, DOM_hexmesh.height);
 				this.time += this.clock.getDelta() * this.on;
-				this.vesselsVol.material.uniforms.timer.value = (Math.sin((this.time*0.125)%(Math.PI/2)));
-				this.group.setRotationFromAxisAngle(axis, Math.PI / 180 * this.time);
+				this.group.setRotationFromAxisAngle(axis, Math.PI / 45 * this.time);
+				this.metatronVol.material.uniforms.timer.value = (Math.sin((this.time*0.125)%(Math.PI/2)));;
 
 				this.camera.layers.enable(surfaceLayer);
 				this.camera.layers.enable(meshLayer);
@@ -369,3 +371,94 @@ export const slide_refine = new Slide(
 			}
 		}
 	});
+
+
+
+
+// export const slide_anime = new Slide(
+// 	function(DOM_hexmesh)
+// 	{
+// 		this.camera = new THREE.PerspectiveCamera(45, DOM_hexmesh.width / DOM_hexmesh.height, 0.1, 1000.0);
+// 		this.camera.position.set(0, 0,26);
+		
+// 		const surfaceLayer = 0;
+// 		const meshLayer = 1;
+
+// 		const contextInput = DOM_hexmesh.getContext('2d');
+
+// 		const orbitControlsInput = new OrbitControls(this.camera, DOM_hexmesh);
+
+// 		this.scene = new THREE.Scene()
+// 		const ambiantLight = new THREE.AmbientLight(0xFFFFFF, ambiantLightInt);
+// 		const pointLight = new THREE.PointLight(0xFFFFFF, pointLightInt);
+// 		pointLight.position.set(10,8,15);
+
+// 		ambiantLight.layers.enable(surfaceLayer);
+// 		pointLight.layers.enable(surfaceLayer);
+// 		ambiantLight.layers.enable(meshLayer);
+// 		pointLight.layers.enable(meshLayer);
+
+// 		this.scene.add(pointLight);
+// 		this.scene.add(ambiantLight);
+
+// 		this.group = new THREE.Group;
+// 		this.scene.add(this.group);
+
+// 		this.vesselsVol = loadAnim();
+// 		this.vesselsVol.layers.set(meshLayer);
+// 		this.group.add(this.vesselsVol);
+
+// 		this.vesselsSurf0 = Display.loadSurfaceView("off", Lung.lung0_off, {transparent: true, opacity: 0.1, color: new THREE.Color(0xFFFF00)});
+// 		this.vesselsSurf0.layers.set(meshLayer);
+// 		this.group.add(this.vesselsSurf0);
+
+// 		this.vesselsSurf1 = Display.loadSurfaceView("off", Lung.lung1_off, {transparent: true, opacity: 0.1, color: new THREE.Color(0xFF0000)});
+// 		this.vesselsSurf1.layers.set(meshLayer);
+// 		this.group.add(this.vesselsSurf1);
+
+// 		this.vesselsSurf2 = Display.loadSurfaceView("off", Lung.lung2_off, {transparent: true, opacity: 0.1, color: new THREE.Color(0x00FF00)});
+// 		this.vesselsSurf2.layers.set(meshLayer);
+// 		this.group.add(this.vesselsSurf2);
+
+// 		this.vesselsSurf3 = Display.loadSurfaceView("off", Lung.lung3_off, {transparent: true, opacity: 0.1, color: new THREE.Color(0x0000FF)});
+// 		this.vesselsSurf3.layers.set(meshLayer);
+// 		this.group.add(this.vesselsSurf3);
+
+
+
+// 		const axis = new THREE.Vector3(0, 1, 0);
+// 		this.clock = new Clock(true);
+// 		this.time = 0;
+		
+// 		this.toggleClipping = function(){
+// 			this.vesselsVol.material.uniforms.clipping.value = 1 - this.vesselsVol.material.uniforms.clipping.value;
+// 		};
+// 		// this.toggleClipping();
+// 		this.toggleVisible = function(){
+// 			this.vesselsVol.visible = !this.vesselsVol.visible;
+// 		};
+// 		// this.toggleVisible();
+
+// 		this.on = 1;
+// 		this.pause = function(){
+// 			this.on = 1 - this.on;
+// 		};
+
+// 		this.loop = function(){
+// 			if(this.running){
+// 				glRenderer.setSize(DOM_hexmesh.width, DOM_hexmesh.height);
+// 				this.time += this.clock.getDelta() * this.on;
+// 				this.vesselsVol.material.uniforms.timer.value = (1+Math.sin(this.time*0.6))/2;
+
+// 				this.camera.layers.enable(surfaceLayer);
+// 				this.camera.layers.enable(meshLayer);
+// 				glRenderer.render(this.scene, this.camera);
+// 				contextInput.clearRect(0, 0, DOM_hexmesh.width, DOM_hexmesh.height);
+// 				contextInput.drawImage(glRenderer.domElement, 0, 0)
+// 				this.camera.layers.disable(surfaceLayer);
+// 				this.camera.layers.disable(meshLayer);
+
+// 				requestAnimationFrame(this.loop.bind(this));
+// 			}
+// 		}
+// 	});

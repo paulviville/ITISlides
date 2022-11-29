@@ -65,6 +65,8 @@
 				<section id="49_theorique.html"></section>
 				<section id="50_theorique.html"></section>
 				<section id="51_perspectives.html"></section>
+				<section id="52_perspectives.html"></section>
+				<section id="44_1_resultats.html"></section>
 				<!-- <section id=""></section> -->
 				<!-- <section id=""></section> -->
 			</div>	
@@ -87,6 +89,7 @@
 			import {slide_results2} from './Slides/42_resultats.js';
 			import {slide_results3} from './Slides/43_resultats.js';
 			import {slide_results4} from './Slides/44_resultats.js';
+			import {slide_results4_1} from './Slides/44_1_resultats.js';
 			import {slide_results5} from './Slides/45_resultats.js';
 			import {slide_medical0} from './Slides/46_medical.js';
 			import {slide_anime} from './Slides/48_anime.js';
@@ -107,6 +110,7 @@
 			slides["42_resultats.html"] = slide_results2;
 			slides["43_resultats.html"] = slide_results3;
 			slides["44_resultats.html"] = slide_results4;
+			slides["44_1_resultats.html"] = slide_results4_1;
 			slides["45_resultats.html"] = slide_results5;
 			slides["46_medical.html"] = slide_medical0;
 			slides["48_anime.html"] = slide_anime;
@@ -332,6 +336,19 @@
 
 				});
 
+				loadSlideHtml("44_1_resultats.html", "./Slides/44_1_resultats.html").then(() => { 
+					slides["44_1_resultats.html"].init(
+						document.getElementById("44_1_sculpture"),
+					);
+
+					fragment_events["44_1_show"] = slides["44_1_resultats.html"].toggleVisible.bind(slides["44_1_resultats.html"]);
+					// fragment_events["44_quality"] = slides["44_1_resultats.html"].toggle_material.bind(slides["44_1_resultats.html"]);
+					// fragment_events["44_clipping"] = slides["44_1_resultats.html"].toggle_clipping.bind(slides["44_1_resultats.html"]);
+
+					// Reveal.slide(52);
+				});
+
+
 				loadSlideHtml("45_resultats.html", "./Slides/45_resultats.html").then(() => { 
 					slides["45_resultats.html"].init(
 						document.getElementById("results_vessels")
@@ -357,6 +374,7 @@
 				loadSlideHtml("49_theorique.html");
 				loadSlideHtml("50_theorique.html");
 				loadSlideHtml("51_perspectives.html");
+				loadSlideHtml("52_perspectives.html");
 
 				// Reveal.slide(36);
 				Reveal.slide(0);
