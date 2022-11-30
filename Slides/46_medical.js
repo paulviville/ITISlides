@@ -9,7 +9,10 @@ import {loadCMap2} from '../CMapJS/IO/SurfaceFormats/CMap2IO.js';
 import {loadGraph} from '../CMapJS/IO/GraphFormats/GraphIO.js';
 import {loadIncidenceGraph} from '../CMapJS/IO/IncidenceGraphFormats/IncidenceGraphIO.js';
 import {Clock} from '../CMapJS/Libs/three.module.js';
-
+import * as Lung0 from '../Files/anim0_files.js';
+import * as Lung1 from '../Files/anim1_files.js';
+import * as Lung2 from '../Files/anim2_files.js';
+import * as Lung3 from '../Files/anim3_files.js';
 import {glRenderer, scafEdgeMaterial, meshEdgeMaterial, ambiantLightInt, pointLightInt} from './parameters.js';
 
 

@@ -356,8 +356,8 @@ export const slide_results4_1 = new Slide(
 			if(this.running){
 				glRenderer.setSize(DOM_hexmesh.width, DOM_hexmesh.height);
 				this.time += this.clock.getDelta() * this.on;
-				this.group.setRotationFromAxisAngle(axis, Math.PI / 45 * this.time);
-				this.metatronVol.material.uniforms.timer.value = (Math.sin((this.time*0.125)%(Math.PI/2)));;
+				this.group.setRotationFromAxisAngle(axis, Math.PI / 90 * this.time);
+				this.metatronVol.material.uniforms.timer.value = (Math.sin((this.time*0.1)%(Math.PI/2))) % 0.8;;
 
 				this.camera.layers.enable(surfaceLayer);
 				this.camera.layers.enable(meshLayer);

@@ -32,6 +32,7 @@
 				<section id="17_algo2D.html"></section>
 				<section id="18_intuitions.html"></section>
 				<section id="14_squelette.html"></section>
+				<section id="plan.html"></section>
 				<section id="19_embranchements.html"></section>
 				<section id="20_embranchements.html"></section>
 				<section id="21_embranchements.html"></section>
@@ -60,12 +61,16 @@
 				<section id="43_resultats.html"></section>
 				<section id="44_resultats.html"></section>
 				<section id="46_medical.html"></section>
-				<section id="47_anime.html"></section>
+				<section id="46_1_medical.html"></section>
+				<!-- <section id="47_anime.html"></section> -->
+				<section id="47_1_anime.html"></section>
 				<section id="48_anime.html"></section>
 				<section id="49_theorique.html"></section>
 				<section id="50_theorique.html"></section>
-				<section id="51_perspectives.html"></section>
+				<!-- <section id="51_perspectives.html"></section> -->
 				<section id="52_perspectives.html"></section>
+				<section id="53_perspectives.html"></section>
+				<section id="54_perspectives.html"></section>
 				<section id="44_1_resultats.html"></section>
 				<!-- <section id=""></section> -->
 				<!-- <section id=""></section> -->
@@ -93,6 +98,7 @@
 			import {slide_results5} from './Slides/45_resultats.js';
 			import {slide_medical0} from './Slides/46_medical.js';
 			import {slide_anime} from './Slides/48_anime.js';
+			import {slide_anime2} from './Slides/47_1_anime.js';
 
 			import RevealNotes from './Reveal/notes/notes.esm.js'
 
@@ -114,6 +120,7 @@
 			slides["45_resultats.html"] = slide_results5;
 			slides["46_medical.html"] = slide_medical0;
 			slides["48_anime.html"] = slide_anime;
+			slides["47_1_anime.html"] = slide_anime2;
 			// slides[] = ;
 
 			let active_slide;
@@ -184,6 +191,7 @@
 				loadSlideHtml("12_methodes_courbes.html");
 				loadSlideHtml("13_squelette.html");
 				loadSlideHtml("14_squelette.html");
+				loadSlideHtml("plan.html");
 				
 				loadSlideHtml("15_algo1D.html").then(() => { 
 					slide_Algo1D.init(
@@ -362,8 +370,23 @@
 						document.getElementById("results_lungs")
 					);
 				});
-				loadSlideHtml("47_anime.html");
-
+				loadSlideHtml("46_1_medical.html");
+				// loadSlideHtml("47_anime.html");
+				// loadSlideHtml("47_1_anime.html");
+				loadSlideHtml("47_1_anime.html", "./Slides/47_1_anime.html").then(() => { 
+					slides["47_1_anime.html"].init(
+						document.getElementById("anim0"),
+						document.getElementById("anim1"),
+						document.getElementById("anim2"),
+						document.getElementById("anim3")
+					);
+					fragment_events["46_showsurf"] = slides["47_1_anime.html"].showsurf1.bind(slides["47_1_anime.html"]);
+					fragment_events["46_show0"] = slides["47_1_anime.html"].showMesh0.bind(slides["47_1_anime.html"]);
+					fragment_events["46_show1"] = slides["47_1_anime.html"].showMesh1.bind(slides["47_1_anime.html"]);
+					fragment_events["46_show2"] = slides["47_1_anime.html"].showMesh2.bind(slides["47_1_anime.html"]);
+					fragment_events["46_show3"] = slides["47_1_anime.html"].showMesh3.bind(slides["47_1_anime.html"]);
+					// Reveal.slide(49);
+				});
 				loadSlideHtml("48_anime.html", "./Slides/48_anime.html").then(() => { 
 					slides["48_anime.html"].init(
 						document.getElementById("animated_lungs")
@@ -373,8 +396,10 @@
 
 				loadSlideHtml("49_theorique.html");
 				loadSlideHtml("50_theorique.html");
-				loadSlideHtml("51_perspectives.html");
+				// loadSlideHtml("51_perspectives.html");
 				loadSlideHtml("52_perspectives.html");
+				loadSlideHtml("53_perspectives.html");
+				loadSlideHtml("54_perspectives.html");
 
 				// Reveal.slide(36);
 				Reveal.slide(0);

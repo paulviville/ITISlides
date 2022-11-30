@@ -16,8 +16,8 @@ import {glRenderer, scafEdgeMaterial, meshEdgeMaterial, ambiantLightInt, pointLi
 export const slide_Algo2D = new Slide(
 	function(DOM_Hand0, DOM_Hand1, DOM_Hand2, DOM_Hand3, DOM_Hand4)
 	{
-		this.camera = new THREE.PerspectiveCamera(75, DOM_Hand0.width / DOM_Hand0.height, 0.1, 1000.0);
-		this.camera.position.set(0, 0, 1.4);
+		this.camera = new THREE.PerspectiveCamera(45, DOM_Hand0.width / DOM_Hand0.height, 0.1, 1000.0);
+		this.camera.position.set(0, 0, 1.95);
 
 		const surfaceLayer = 0;
 		const skelLayer = 1;
