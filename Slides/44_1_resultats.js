@@ -29,6 +29,7 @@ uniform float min_clipping;
 uniform float max_clipping;
 uniform vec3 mesh_color;
 uniform float max_scale;
+uniform int crazy;
 
 uniform sampler2D centerTexture;
 uniform sampler2D positionTexture;
@@ -96,6 +97,8 @@ void main() {
 		value = clamp((value - min_clipping)/(max_clipping - min_clipping), 0.0, 1.0);
 		scale *= (value);
 		p = (p * scale) + center;
+		if(crazy == 1)
+			p -= (1.0-value) * vec3(inverse(modelMatrix)*vec4(plane, 1.0));
 	}
 	else
 		p = (p * max_scale) + center;
@@ -277,6 +280,7 @@ function loadAnim(){
 		depthWrite: true,
 		uniforms: {
 			clipping: {value: 0},
+			crazy: {value: 0},
 			min_clipping: {value: -0.01},
 			max_clipping: {value: 0},
 			quality: {value: 0},
@@ -363,6 +367,11 @@ export const slide_results4_1 = new Slide(
 			this.metatronVol.visible = !this.metatronVol.visible;
 		};
 		// this.toggleVisible();
+
+		this.toggleThanos = function(){
+			this.metatronVol.material.uniforms.crazy.value = 1 - this.metatronVol.material.uniforms.crazy.value;
+		}
+		this.toggleThanos();
 
 		this.on = 1;
 		this.pause = function(){
