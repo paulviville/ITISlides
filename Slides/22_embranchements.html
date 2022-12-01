@@ -10,3 +10,19 @@
 		<p style="font-size:20px; margin-top: 10px;">3D</p>
 	</div>
 </div>
+<aside class="notes">
+	<br>- Nos branches subdivisées ont 2 quads.
+	<br>- en attachant chaque branche à une arete de l'échafaudage et associant chaque moitié a un sommet
+	<br>- on peut ordonnancer les branches pour les appairer correctement
+	<br>-
+	<br>- en montant en dimension 2D -> 3D
+	<br>- arete echafaudage -> quad. sommet echafaudage -> arete
+	<br>- branche subdivisée -> 4 hexas
+	<br>- avec un polyèdre quad à l'embranchement:
+	<br>- chaque hexa des branches associé à une arete de l'échafaudage
+	<br>- au final chaque arete echaf a une pair d'hexas
+	<br>- permet de reconnecter les hexas entre eux
+	<br>-
+	<br>- echafaudage permet donc d'encoder la connectivité et géométrie du maillage hexa en construction
+	<br>- les décisions pour la connectivité sont entièrement locales, et n'aura donc pas de problème globale à résoudre ou de difficultés en présence de cycles
+</aside>

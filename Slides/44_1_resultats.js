@@ -94,11 +94,12 @@ void main() {
 	if(clipping == 1){
 		vec3 c = vec3(modelMatrix * vec4(center, 1.0));
 		float value = dot(plane, vec3(modelMatrix * vec4(center , 1.0)));
+		if(crazy == 1) value += 0.52*cos(timer);
 		value = clamp((value - min_clipping)/(max_clipping - min_clipping), 0.0, 1.0);
-		scale *= (value);
+		scale *= (crazy == 0 ? value : pow(value, 0.25));
 		p = (p * scale) + center;
 		if(crazy == 1)
-			p -= 0.3*(1.0-value) * vec3(inverse(modelMatrix)*vec4(plane, 1.0));
+			p -= 0.55*(1.0-value) * vec3(inverse(modelMatrix)*vec4(plane, 1.0));
 	}
 	else
 		p = (p * max_scale) + center;
@@ -120,12 +121,12 @@ in vec3 col;
 in vec3 corner;
 
 out vec4 fragColor;
+uniform float width;
 
 void main(){
 	fragColor = vec4(1.0);
 	
 	float eps = 0.001;
-	float width = 0.1;
 	float x = 1.0-abs(corner.x);
 	float y = 1.0-abs(corner.y);
 	float z = 1.0-abs(corner.z);
@@ -134,10 +135,13 @@ void main(){
 		(x < eps && ( y < width || z < width)) ||
 		(y < eps && ( x < width || z < width)) ||
 		(z < eps && ( x < width || y < width))
-	)
-		fragColor *= vec4(vec3(0.3), 1.0);
-	// else {
-
+	){
+			float v;
+			if(x < eps)	v = 1.-pow((width - min(y,z))/width, 0.45);
+			if(y < eps)	v = 1.-pow((width - min(x,z))/width, 0.45);
+			if(z < eps)	v = 1.-pow((width - min(y,x))/width, 0.45);
+			fragColor *= vec4(vec3(v), 1.0);
+		}
 		vec3 light_pos = vec3(10.0, 8.0, 15.0);
 
 		float specular = 0.3;
@@ -154,6 +158,7 @@ void main(){
 	// }
 }
 `;
+
 
 
 function loadAnim(){
@@ -287,6 +292,7 @@ function loadAnim(){
 			min_clipping: {value: -0.01},
 			max_clipping: {value: 0},
 			quality: {value: 0},
+			width: {value: 0.075},
 			max_scale: {value: 0.90},
 			mesh_color: {value: mesh_color},
 			nbHex: {value: nb_hex},
@@ -340,10 +346,10 @@ export const slide_results4_1 = new Slide(
 		this.metatronVol.layers.set(meshLayer);
 		this.group.add(this.metatronVol);
 
-		const metatronSkel = loadIncidenceGraph('ig', Sculpture.sculpture_ig);
-		this.metatronSkel = new Renderer(metatronSkel);
-		this.metatronSkel.edges.create({layer: surfaceLayer, material: meshEdgeMaterial, size: 1}).addTo(this.group);
-		this.metatronSkel.faces.create({layer: surfaceLayer, side: THREE.DoubleSide}).addTo(this.group);
+		// const metatronSkel = loadIncidenceGraph('ig', Sculpture.sculpture_ig);
+		// this.metatronSkel = new Renderer(metatronSkel);
+		// this.metatronSkel.edges.create({layer: surfaceLayer, material: meshEdgeMaterial, size: 1}).addTo(this.group);
+		// this.metatronSkel.faces.create({layer: surfaceLayer, side: THREE.DoubleSide}).addTo(this.group);
 		this.metatronSurface.material.side = THREE.BackSide;
 
 		// const scale = 0.0075;
@@ -371,13 +377,13 @@ export const slide_results4_1 = new Slide(
 		};
 		// this.toggleVisible();
 
-		let speed;
+		this.speed;
 		this.toggleThanos = function(){
 			this.metatronVol.material.uniforms.crazy.value = 1 - this.metatronVol.material.uniforms.crazy.value;
 			if(this.metatronVol.material.uniforms.crazy.value == 1)
-				speed = 30;
+			this.speed = 30;
 			else 
-				speed = 90;
+			this.speed = 90;
 		}
 		this.toggleThanos();
 
@@ -391,8 +397,9 @@ export const slide_results4_1 = new Slide(
 			if(this.running){
 				glRenderer.setSize(DOM_hexmesh.width, DOM_hexmesh.height);
 				this.time += this.clock.getDelta() * this.on;
-				this.group.setRotationFromAxisAngle(axis, Math.PI / speed * this.time);
-				this.metatronVol.material.uniforms.timer.value = (Math.sin((this.time*0.1)%(Math.PI/2)));
+				this.group.setRotationFromAxisAngle(axis, Math.PI / this.speed * this.time);
+				this.metatronVol.material.uniforms.timer.value = 
+				this.metatronVol.material.uniforms.crazy.value == 0 ? (Math.sin((this.time*0.1)%(Math.PI/2))) :(this.time*0.15);
 
 				this.camera.layers.enable(surfaceLayer);
 				this.camera.layers.enable(meshLayer);

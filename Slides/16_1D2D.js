@@ -107,6 +107,7 @@ export const slide_1D2D = new Slide(
 		this.hand2_skel.edges.mesh.setRotationFromAxisAngle(offsetAxisHand, offsetAngleHand);
 		// this.hand_skel.faces.mesh.setRotationFromAxisAngle(offsetAxisHand, offsetAngleHand);
 
+		this.hand_surface.material.side = THREE.BackSide;
 
 		this.loop = function(){
 			if(this.running){
@@ -114,7 +115,6 @@ export const slide_1D2D = new Slide(
 				this.group.setRotationFromAxisAngle(axis, Math.PI / 120 * this.time);
 
 				this.hand_surface.material.opacity = 0.5;
-				this.hand_surface.material.side = THREE.FrontSide;
 				this.camera.layers.enable(curve_layer);
 				glRenderer.setSize(DOM_Skel1D.width, DOM_Skel1D.height);
 				glRenderer.render(this.scene, this.camera);

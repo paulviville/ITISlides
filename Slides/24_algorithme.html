@@ -34,8 +34,8 @@
 			<li style="padding-top: 14px;">2 - Analyse du squelette</li>
 			<li style="padding-top: 14px;">3 - Construction de l'échafaudage</li>
 			<li style="padding-top: 14px;">4 - Propagation de la géométrie</li>
-			<li style="padding-top: 14px;">5 - Insertion des tronçons</li>
-			<li style="padding-top: 14px;">6 - Couture des tronçons</li>
+			<li style="padding-top: 14px;">5 - Insertion des volumes</li>
+			<li style="padding-top: 14px;">6 - Couture des volumes</li>
 			<li style="padding-top: 14px;">7 - Transfert de la géométrie</li>
 		</ul>
 	</div>
@@ -43,5 +43,15 @@
 
 
 <aside class="notes">
-
+	<br>- Nous avons proposé un algorithme pour générer un maillage hexaédrique à partir d'un squelette
+	<br>- composé de courbes et surfaces quads.
+	<br>- Pipeline complet en 7 étapes
+	<br>- entrée: surface du domaine et squelette
+	<br>- adaptation du squelette au rayon local
+	<br>- Analyse du squelette
+	<br>- construction de l'échafaudage pour décomposer le domaine en blocs
+	<br>- insertion d'éléments de constructions dans les blocs
+	<br>- utilisation de l'échafaudage pour coudre les blocs entre eux
+	<br>- transfert de la géométrie de l'échafaudage
+	<br>- maillage brut ensuite raffiné et optimisé
 </aside>

@@ -1,4 +1,4 @@
-<h5>Raffinement Géométrique</h5>
+<h5>Optimisation Géométrique</h5>
 <hr style="width: 70%; display:flex; justify-content:space-evenly;">
 <p style="font-size:25px; margin-top: -10px;"><b>Edge Cone Rectification</b></p>
 <div class="r-hstack">
@@ -9,3 +9,18 @@
 	<canvas id="edgecone" width="400" height="400" ></canvas>
 
 </div>
+
+<aside class="notes">
+	<br>- Les raffinements montrés permettent d'adapter le maillage à la surface et remplir le domaine
+	<br>- il faut aussi améliorer la forme des mailles qui sont souvent créée très déformées
+	<br>- pour améliorer le jacobien normalisé des mailles
+	<br>-
+	<br>- on utilise une méthode appelé edge cone Rectification
+	<br>- consiste a utiliser les normales autour de la base d'une arete orientée pour corriger la forme
+	<br>- chaque arete orientée vise à être alignée avec la moyenne des normales qui l'entoure en déplacant itérativement les sommets
+	<br>- dans l'ensemble du maillage.
+	<br>-
+	<br>- l'application itérative de cette Rectification fait tendre les hexaèdres vers des pavés droits
+	<br>- en combinant cette Rectification a un placage à la surface on peut améliorer la forme des mailles en s'adaptant au mieux à la géométrie du bord du domaine
+	<br>- nous avons obtenu ainsi des résultats de bonne qualité représentant bien le domaine.
+</aside>

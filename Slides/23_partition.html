@@ -30,3 +30,24 @@
 		</div>
 	</div>
 </div>
+<aside class="notes">
+	<br>- On sait grace à la formule d'euler qu'il existe une partition quad de la sphère pour tout n; 
+	<br>- Pour produire ces polyèdres quads nous avons dévellopé un algorithme de partition de sphère en quad
+	<br>-
+	<br>- une sphere est inséré sur l'embranchement et intersectée avec les branches
+	<br>- générer un maillage quad à partir d'un set de point non structurés est difficile 
+	<br>- on inverse donc le problème avec une approche duale.
+	<br>- on veut un maillage a N faces quad, le dual est donc un maillage a N sommets de deg 4
+	<br>-
+	<br>- on veut idéalement des faces convexes contenant leur point branche
+	<br>- -> le voronoi dont le dual est une triangulaiton de delaunay
+	<br>- voronoi souvent pas quad
+	<br>- pour rester proche du voronoi on part de la triangulaiton de delaunay des points
+	<br>- On va remailler cette triangulation
+	<br>- En ne touchant qu'aux arêtes avec dessupressions et insertions itératives, on peut obtenir une config
+	<br>- avec que des sommets de degré 4
+	<br>- Ensuite on construit le dual composé de quads
+	<br>-
+	<br>- pas possible de garantir la reussite de l'algo
+	<br>- Mais plutot bons resultats sur des centaines de configurations générées aléatoirement
+</aside>

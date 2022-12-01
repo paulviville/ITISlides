@@ -159,17 +159,10 @@ export const slide_anime2 = new Slide(
 		this.lungVol1.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
 		this.vesselsSurf0.position.set(0,8,0)
 		this.vesselsSurf0.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
-		// this.vesselsSurf1.position.set(0,8,0)
-		// this.vesselsSurf1.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
-		// this.vesselsSurf2.position.set(0,8,0)
-		// this.vesselsSurf2.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
+
 		this.vesselsSurf3.position.set(0,8,0)
 		this.vesselsSurf3.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI/2)
-		// this.group.setRotationFromAxisAngle(axis, Math.PI);
-		// this.vesselsSurf0.material.side = THREE.BackSide;
-		// this.vesselsSurf1.material.side = THREE.BackSide;
-		// this.vesselsSurf2.material.side = THREE.BackSide;
-		
+
 		this.vesselsSurf0.material.side = THREE.BackSide;
 		this.vesselsSurf3.material.side = THREE.BackSide;
 
