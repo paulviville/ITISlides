@@ -92,6 +92,7 @@ export const slide_objectif = new Slide(
 				this.vessels_surface.material.opacity = 0.5;
 				this.vessels_surface.material.side = THREE.FrontSide;
 				this.camera.layers.enable(skeleton_layer);
+				// glRenderer.setPixelRatio(window.devicePixelRatio)
 				glRenderer.setSize(DOM_input.width, DOM_input.height);
 				glRenderer.render(this.scene, this.camera);
 				context_input.clearRect(0, 0, DOM_input.width, DOM_input.height);

@@ -98,7 +98,7 @@ void main() {
 		scale *= (value);
 		p = (p * scale) + center;
 		if(crazy == 1)
-			p -= (1.0-value) * vec3(inverse(modelMatrix)*vec4(plane, 1.0));
+			p -= 0.3*(1.0-value) * vec3(inverse(modelMatrix)*vec4(plane, 1.0));
 	}
 	else
 		p = (p * max_scale) + center;
@@ -122,18 +122,21 @@ in vec3 corner;
 out vec4 fragColor;
 
 void main(){
+	fragColor = vec4(1.0);
+	
 	float eps = 0.001;
 	float width = 0.1;
 	float x = 1.0-abs(corner.x);
 	float y = 1.0-abs(corner.y);
 	float z = 1.0-abs(corner.z);
+	
 	if(
 		(x < eps && ( y < width || z < width)) ||
 		(y < eps && ( x < width || z < width)) ||
 		(z < eps && ( x < width || y < width))
 	)
-		fragColor = vec4(vec3(0.3), 1.0);
-	else {
+		fragColor *= vec4(vec3(0.3), 1.0);
+	// else {
 
 		vec3 light_pos = vec3(10.0, 8.0, 15.0);
 
@@ -147,8 +150,8 @@ void main(){
 		vec3 R = reflect(-L, N);
 		float spec = pow(max(dot(R,E), 0.0), specular);
 		vec3 specCol = mix(col, vec3(0.0), shine);
-		fragColor = vec4(mix(col * lamb, specCol, spec), 1.0);
-	}
+		fragColor *= vec4(mix(col * lamb, specCol, spec), 1.0);
+	// }
 }
 `;
 
@@ -368,8 +371,13 @@ export const slide_results4_1 = new Slide(
 		};
 		// this.toggleVisible();
 
+		let speed;
 		this.toggleThanos = function(){
 			this.metatronVol.material.uniforms.crazy.value = 1 - this.metatronVol.material.uniforms.crazy.value;
+			if(this.metatronVol.material.uniforms.crazy.value == 1)
+				speed = 30;
+			else 
+				speed = 90;
 		}
 		this.toggleThanos();
 
@@ -378,11 +386,12 @@ export const slide_results4_1 = new Slide(
 			this.on = 1 - this.on;
 		};
 
+		
 		this.loop = function(){
 			if(this.running){
 				glRenderer.setSize(DOM_hexmesh.width, DOM_hexmesh.height);
 				this.time += this.clock.getDelta() * this.on;
-				this.group.setRotationFromAxisAngle(axis, Math.PI / 90 * this.time);
+				this.group.setRotationFromAxisAngle(axis, Math.PI / speed * this.time);
 				this.metatronVol.material.uniforms.timer.value = (Math.sin((this.time*0.1)%(Math.PI/2)));
 
 				this.camera.layers.enable(surfaceLayer);

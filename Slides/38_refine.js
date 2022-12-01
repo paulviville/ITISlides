@@ -115,6 +115,8 @@ in vec3 corner;
 out vec4 fragColor;
 
 void main(){
+
+	fragColor = vec4(1.0);
 	float eps = 0.001;
 	float width = 0.1;
 	float x = 1.0-abs(corner.x);
@@ -125,8 +127,8 @@ void main(){
 		(y < eps && ( x < width || z < width)) ||
 		(z < eps && ( x < width || y < width))
 	)
-		fragColor = vec4(vec3(0.3), 1.0);
-	else {
+		fragColor *= vec4(vec3(0.3), 1.0);
+	// else {
 
 		vec3 light_pos = vec3(10.0, 8.0, 15.0);
 
@@ -140,8 +142,8 @@ void main(){
 		vec3 R = reflect(-L, N);
 		float spec = pow(max(dot(R,E), 0.0), specular);
 		vec3 specCol = mix(col, vec3(0.0), shine);
-		fragColor = vec4(mix(col * lamb, specCol, spec), 1.0);
-	}
+		fragColor *= vec4(mix(col * lamb, specCol, spec), 1.0);
+	// }
 }
 `;
 
