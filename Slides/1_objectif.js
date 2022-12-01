@@ -29,7 +29,7 @@ let mesh_edge_material = new THREE.LineBasicMaterial({
 export const slide_objectif = new Slide(
 	function(DOM_input, DOM_output)
 	{
-		this.camera = new THREE.PerspectiveCamera(75, DOM_input.width / DOM_input.height, 0.1, 1000.0);
+		this.camera = new THREE.PerspectiveCamera(75, DOM_input.width / DOM_input.height, 0.01, 100.0);
 		this.camera.position.set(0, 0, 1);
 
 		const input_layer = 0;
