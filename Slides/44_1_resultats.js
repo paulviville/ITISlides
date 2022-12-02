@@ -19,6 +19,7 @@ let v_shader = `
 in vec3 position;
 
 uniform float timer;
+uniform float timer2;
 uniform mat4 modelMatrix;
 uniform mat4 modelViewMatrix;
 uniform mat4 projectionMatrix;
@@ -91,13 +92,17 @@ void main() {
 	float scale = max_scale;
 
 	
-	if(clipping == 1){
+	if(clipping == 1 || crazy == 1){
 		vec3 c = vec3(modelMatrix * vec4(center, 1.0));
 		float value = dot(plane, vec3(modelMatrix * vec4(center , 1.0)));
-		if(crazy == 1) value += 0.52*cos(timer);
+		if(crazy == 1) value += 0.5*cos(timer2);
+
 		value = clamp((value - min_clipping)/(max_clipping - min_clipping), 0.0, 1.0);
+
 		scale *= (crazy == 0 ? value : pow(value, 0.25));
+
 		p = (p * scale) + center;
+
 		if(crazy == 1)
 			p -= 0.55*(1.0-value) * vec3(inverse(modelMatrix)*vec4(plane, 1.0));
 	}
@@ -298,7 +303,8 @@ function loadAnim(){
 			nbHex: {value: nb_hex},
 			centerTexture : {value: centerTexture},
 			positionTexture : {value: positionTexture},
-			timer: {value: 0.0}
+			timer: {value: 0.0},
+			timer2: {value: 0.0}
 		}
 	} );
 
@@ -367,6 +373,7 @@ export const slide_results4_1 = new Slide(
 		const axis = new THREE.Vector3(0, 1, 0);
 		this.clock = new Clock(true);
 		this.time = 0;
+		this.time2 = 0;
 		
 		this.toggleClipping = function(){
 			this.metatronVol.material.uniforms.clipping.value = 1 - this.metatronVol.material.uniforms.clipping.value;
@@ -380,12 +387,12 @@ export const slide_results4_1 = new Slide(
 		this.speed;
 		this.toggleThanos = function(){
 			this.metatronVol.material.uniforms.crazy.value = 1 - this.metatronVol.material.uniforms.crazy.value;
-			if(this.metatronVol.material.uniforms.crazy.value == 1)
-			this.speed = 30;
-			else 
-			this.speed = 90;
+
+			this.time2 = 0;
+			console.log("Snap");
+			this.metatronSurface.visible = !this.metatronSurface.visible
 		}
-		this.toggleThanos();
+		// this.toggleThanos();
 
 		this.on = 1;
 		this.pause = function(){
@@ -396,10 +403,19 @@ export const slide_results4_1 = new Slide(
 		this.loop = function(){
 			if(this.running){
 				glRenderer.setSize(DOM_hexmesh.width, DOM_hexmesh.height);
-				this.time += this.clock.getDelta() * this.on;
-				this.group.setRotationFromAxisAngle(axis, Math.PI / this.speed * this.time);
-				this.metatronVol.material.uniforms.timer.value = 
-				this.metatronVol.material.uniforms.crazy.value == 0 ? (Math.sin((this.time*0.1)%(Math.PI/2))) :(this.time*0.15);
+				let delta = this.clock.getDelta();
+
+				this.time += delta * this.on;
+
+				if(this.metatronVol.material.uniforms.crazy.value){
+					this.time2 += delta * this.on;
+					this.metatronVol.material.uniforms.timer2.value = (this.time2*0.15)
+				}
+				else {
+					this.metatronVol.material.uniforms.timer.value = (Math.sin((this.time*0.1)%(Math.PI/2)));
+				}
+
+				this.group.setRotationFromAxisAngle(axis, Math.PI / 60 * this.time);
 
 				this.camera.layers.enable(surfaceLayer);
 				this.camera.layers.enable(meshLayer);

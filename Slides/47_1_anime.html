@@ -32,5 +32,22 @@
 
 
 <aside class="notes">
-
+	<br>- une demande qui nous a été faite dans le cadre de cette collaboration était d'adapter nos maillages a des déformations biologiques
+	<br>- lors de la respiration, les bronches se déforme
+	<br>- avoir un maillage préservant la même connectivité sur tout le cycle de respiration serait bénéfique
+	<br>- nous avons donc proposé une méthode permettant d'adapter un maillage volumique d'une surface à une surface proche.
+	<br>-
+	<br>- ici en rouge les bronches à un instant t
+	<br>- on veut les adapter aux bronches à t +1 en bleu
+	<br>-
+	<br>-dans un premier temps, une transformation rigide par rotation est calculée entre les surfaces.
+	<br>- la rotation est appliqué au maillage volumique pour le recaler au plus proche de la surface bleu sans deformation
+	<br>- dans un second temps, une transformation non rigide est calculée pour attirer les sommets de la surface du maillage volumique vers la surface bleu
+	<br>-
+	<br>- cette transformation est recalculé itérativement pour appliquer des petites deformations au maillage hex
+	<br>- tout en optimisant la position des sommets interne pour préserver la qualité du maillage
+	<br>- 
+	<br>- après un certains nombre d'itérations, on obtient un maillage volumique adapté a la surface suivante.
+	<br>- nous permettant d'enregistrer les nouvelles positions des sommets.
+	<br>-
 </aside>

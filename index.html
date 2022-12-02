@@ -167,7 +167,9 @@
 				transition: 'none',
 				center: true,
 				hideAddressBar: true,
-				plugins: [RevealNotes]
+				plugins: [RevealNotes],
+				// width: 1920,
+				// height: 1400
 			}).then(() => {
 				// console.log(document.getElementsByClassName("progress")[0].innerHTML += ("<p>test</p>"));
 				// console.log(document.getElementsByClassName("progress")[0]);
@@ -354,8 +356,8 @@
 						document.getElementById("44_1_sculpture"),
 					);
 
-					fragment_events["44_1_show"] = slides["44_1_resultats.html"].toggleClipping.bind(slides["44_1_resultats.html"]);
-					// fragment_events["44_quality"] = slides["44_1_resultats.html"].toggle_material.bind(slides["44_1_resultats.html"]);
+					// fragment_events["44_1_show"] = slides["44_1_resultats.html"].toggleClipping.bind(slides["44_1_resultats.html"]);
+					fragment_events["44_1_show"] = slides["44_1_resultats.html"].toggleThanos.bind(slides["44_1_resultats.html"]);
 					// fragment_events["44_clipping"] = slides["44_1_resultats.html"].toggle_clipping.bind(slides["44_1_resultats.html"]);
 
 					// Reveal.slide(52);
