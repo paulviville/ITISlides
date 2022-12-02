@@ -1,0 +1,39 @@
+<h5>Génération de Maillages basée squelette</h5>
+<hr style="width: 70%; display:flex; justify-content:space-evenly;">
+<div class="r-hstack">  
+	<div class="r-vstack">
+		<div class="r-hstack">
+			<div>  
+				<img src="Images/SOTA/automatedAllQuad.png" height="340px" style="padding-right: 0%; margin: 0px;">
+				<p style="font-size:18px; margin-top: 0px;">[Xiong et al. 2013]</p>
+			</div>
+		</div>
+	</div>
+	<div>
+		<p style="font-size: 25px;"><b>Approches volumiques</b></p>
+		<ul style="font-size: 25px;">
+			<li style="padding-top: 0px;">Insertion d'hexaèdre</li>
+			<ul style="font-size: 20px;">
+				<li style="padding-top: 10px;">Extension directe du surfacique</li>
+				<li style="padding-top: 10px;">Même difficultés</li>
+			</ul>
+			<li style="padding-top: 14px;">Paramétrisation de la surface</li>
+			<ul style="font-size: 20px;">
+				<li style="padding-top: 10px;">Système à résoudre</li>
+				<li style="padding-top: 10px;">Beaucoup de sommets irréguliers</li>
+			</ul>
+		</ul>
+	</div>
+</div>
+
+<aside class="notes">
+	<br>- Le nombre de méthodes de génération de maillage volumiques basées squelette courbes est limité
+	<br>- La méthode par insertion d'hexa peut être directement étendu à l'hexaédrique
+	<br>- l'extrusion d'un face quad étant un hexaèdre
+	<br>- 
+	<br>- une des méthodes alternatives celle de xiong et al utilise le squelette pour paramétriser la surface
+	<br>- et construit des isolines de cette paramétrisation le long des branches
+	<br>- un systeme est résolu pour rendre les isolines compatibles aux embranchements.
+	<br>- ensuite, ces lignes sont utilisées avec le squelette pour construire des prismes qui sont finalement divisées en hexaèdres
+	<br>- Le résultat est un maillage garanti hexaédrique, mais a un grand cout en calcul et avec un grand nombre de sommets irréguliers le long des branches.
+</aside>
