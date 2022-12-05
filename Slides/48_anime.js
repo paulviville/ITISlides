@@ -41,6 +41,7 @@ uniform sampler2D positionTexture;
 
 out vec3 pos;
 out vec3 col;
+out vec3 corner;
 
 void main() {
 	int i, j;
@@ -110,6 +111,7 @@ void main() {
 	gl_Position = projectionMatrix * mvPosition;
 	pos = vec3(modelMatrix * vec4( p, 1.0));
 	col = mesh_color;
+	corner = position;
 }
 `;
 
@@ -118,23 +120,40 @@ precision highp float;
 
 in vec3 pos;
 in vec3 col;
+in vec3 corner;
 
 out vec4 fragColor;
 
 void main(){
-	vec3 light_pos = vec3(10.0, 8.0, 15.0);
 
-	float specular = 0.3;
-	float shine = 0.1;
-	
-	vec3 N = normalize(cross(dFdx(pos),dFdy(pos)));
-	 vec3 L = normalize(light_pos - pos);
-	float lamb = clamp(dot(N, L), 0.2, 1.0);
-	vec3 E = normalize(-pos);
-	vec3 R = reflect(-L, N);
-	float spec = pow(max(dot(R,E), 0.0), specular);
-	vec3 specCol = mix(col, vec3(0.0), shine);
-	fragColor = vec4(mix(col * lamb, specCol, spec), 1.0);
+	fragColor = vec4(1.0);
+	float eps = 0.001;
+	float width = 0.1;
+	float x = 1.0-abs(corner.x);
+	float y = 1.0-abs(corner.y);
+	float z = 1.0-abs(corner.z);
+	if(
+		(x < eps && ( y < width || z < width)) ||
+		(y < eps && ( x < width || z < width)) ||
+		(z < eps && ( x < width || y < width))
+	)
+		fragColor *= vec4(vec3(0.3), 1.0);
+	// else {
+
+		vec3 light_pos = vec3(10.0, 8.0, 15.0);
+
+		float specular = 0.3;
+		float shine = 0.1;
+		
+		vec3 N = normalize(cross(dFdx(pos),dFdy(pos)));
+		vec3 L = normalize(light_pos - pos);
+		float lamb = clamp(dot(N, L), 0.2, 1.0);
+		vec3 E = normalize(-pos);
+		vec3 R = reflect(-L, N);
+		float spec = pow(max(dot(R,E), 0.0), specular);
+		vec3 specCol = mix(col, vec3(0.0), shine);
+		fragColor *= vec4(mix(col * lamb, specCol, spec), 1.0);
+	// }
 }
 `;
 
@@ -245,10 +264,9 @@ function loadAnim(){
 
 	const geometry = new THREE.BufferGeometry();
 	const pos = [
-		0.1, -0.1, -0.1,	-0.1, -0.1, -0.1,	-0.1, 0.1, -0.1,	0.1, 0.1, -0.1,
-		0.1, -0.1, 0.1,		-0.1, -0.1, 0.1,	-0.1, 0.1, 0.1,		0.1, 0.1, 0.1
+		1.0, -1.0, -1.0,	-1.0, -1.0, -1.0,	-1.0, 1.0, -1.0,	1.0, 1.0, -1.0,
+		1.0, -1.0, 1.0,		-1.0, -1.0, 1.0,	-1.0, 1.0, 1.0,		1.0, 1.0, 1.0
 	]; // not actually used but here because firefox needs it
-
 	const indices = [
 		1, 0, 2,	2, 0, 3,	1, 5, 4,	1, 4, 0,
 		0, 4, 3,	3, 4, 7,	3, 7, 6,	3, 6, 2, 

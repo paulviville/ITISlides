@@ -7,13 +7,16 @@
 				<canvas id="anim0" width="560" height="500" ></canvas>
 				<p style="font-size:44px; margin-top: 0px;">Surface t</p>
 			</div>
-			<div>
+			<div class="fragment" id="46_showsurf"></div>
+			<div class="fragment" id="46_show0"></div>
+			<div class="fragment">
 				<canvas id="anim1" width="560" height="500" ></canvas>
 				<p style="font-size:44px; margin-top: 0px;">Recalage rigide</p>
 			</div>
 		</div>
+		<div class="fragment" id="46_show1"></div>
 		<div class="r-hstack" style="margin-top: -10px;;">
-			<div>
+			<div class="fragment">
 				<canvas id="anim2" width="560" height="500" ></canvas>
 				<p style="font-size:44px; margin-top: 0px;">Recalage non-rigide</p>
 			</div>
@@ -24,9 +27,6 @@
 		</div>
 	</div>
 </div>
-<div class="fragment" id="46_showsurf"></div>
-<div class="fragment" id="46_show0"></div>
-<div class="fragment" id="46_show1"></div>
 <div class="fragment" id="46_show2"></div>
 <div class="fragment" id="46_show3"></div>
 
@@ -40,8 +40,8 @@
 	<br>- ici en rouge les bronches à un instant t
 	<br>- on veut les adapter aux bronches à t +1 en bleu
 	<br>-
-	<br>-dans un premier temps, une transformation rigide par rotation est calculée entre les surfaces.
-	<br>- la rotation est appliqué au maillage volumique pour le recaler au plus proche de la surface bleu sans deformation
+	<br>-dans un premier temps, une transformation rigide est calculée entre les surfaces.
+	<br>- la transformation est appliquée au maillage volumique pour le recaler au plus proche de la surface bleu sans deformation
 	<br>- dans un second temps, une transformation non rigide est calculée pour attirer les sommets de la surface du maillage volumique vers la surface bleu
 	<br>-
 	<br>- cette transformation est recalculé itérativement pour appliquer des petites deformations au maillage hex

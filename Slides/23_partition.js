@@ -136,7 +136,7 @@ export const slide_sphere_partition = new Slide(
 		raw_delaunay_renderer.geodesics.create({layer: raw_layer, color: 0x0011FF}).addTo(this.group);
 
 		let remeshed_delaunay_renderer = new RendererSpherical(sphere_remesh);
-		remeshed_delaunay_renderer.geodesics.create({layer: remesh_layer, color: 0x11DD44}).addTo(this.group);
+		remeshed_delaunay_renderer.geodesics.create({layer: remesh_layer, color: 0x11BB44}).addTo(this.group);
 
 		let dual_renderer = new RendererSpherical(sphere_dual);
 		dual_renderer.geodesics.create({layer: dual_layer, color: 0xFF2222}).addTo(this.group);
