@@ -112,7 +112,7 @@ export const slide_1D2D = new Slide(
 		this.loop = function(){
 			if(this.running){
 				this.time += this.clock.getDelta() * this.on;
-				this.group.setRotationFromAxisAngle(axis, Math.PI / 120 * this.time);
+				this.group.setRotationFromAxisAngle(axis, Math.PI / 180 * this.time);
 
 				this.hand_surface.material.opacity = 0.5;
 				this.camera.layers.enable(curve_layer);
