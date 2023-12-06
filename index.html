@@ -14,8 +14,12 @@
 
 				<!-- Intro -->
 				<section id="0_titre.html" data-visibility="uncounted"></section>
+				<section id="1_meshes.html"></section>
+				<section id="2_cells.html"></section>
+				<section id="3_types.html"></section>
+				<section id="4_sampling.html"></section>
 				<section id="1_objectifs.html"></section>
-				<section id="2_context.html"></section>
+				<!-- <section id="2_context.html"></section>
 				<section id="3_hexmesh_intro.html"></section>
 				<section id="4_hexmesh_criteres.html"></section>
 				<section id="5_hexmesh_regul.html"></section>
@@ -66,20 +70,16 @@
 				<section id="sep_medicale.html"></section>
 				<section id="46_medical.html"></section>
 				<section id="46_1_medical.html"></section>
-				<!-- <section id="47_anime.html"></section> -->
 				<section id="47_1_anime.html"></section>
 				<section id="48_anime.html"></section>
 				<section id="sep_conclusions.html"></section>
 				<section id="49_theorique.html"></section>
 				<section id="50_theorique.html"></section>
-				<!-- <section id="51_perspectives.html"></section> -->
 				<section id="54_perspectives.html"></section>
 				<section id="52_perspectives.html"></section>
 				<section id="55_perspectives.html"></section>
 				<section id="53_perspectives.html"></section>
-				<section id="44_1_resultats.html"></section>
-				<!-- <section id=""></section> -->
-				<!-- <section id=""></section> -->
+				<section id="44_1_resultats.html"></section> -->
 			</div>	
 		</div>
 
@@ -110,23 +110,23 @@
 
 			const slides = new Array();
 			slides["1_objectifs.html"] = slide_objectif;
-			slides["15_algo1D.html"] = slide_Algo1D;
-			slides["16_1D2D.html"] = slide_1D2D;
-			slides["17_algo2D.html"] = slide_Algo2D;
-			slides["23_partition.html"] = slide_sphere_partition;
-			slides["24_algorithme.html"] = slide_Algo;
-			slides["29_echafaudage.html"] = slide_embranch;
-			slides["35_brut.html"] = slide_brut;
-			slides["38_refine.html"] = slide_refine;
-			slides["41_resultats.html"] = slide_results1;
-			slides["42_resultats.html"] = slide_results2;
-			slides["43_resultats.html"] = slide_results3;
-			slides["44_resultats.html"] = slide_results4;
-			slides["44_1_resultats.html"] = slide_results4_1;
-			slides["45_resultats.html"] = slide_results5;
-			slides["46_medical.html"] = slide_medical0;
-			slides["48_anime.html"] = slide_anime;
-			slides["47_1_anime.html"] = slide_anime2;
+			// slides["15_algo1D.html"] = slide_Algo1D;
+			// slides["16_1D2D.html"] = slide_1D2D;
+			// slides["17_algo2D.html"] = slide_Algo2D;
+			// slides["23_partition.html"] = slide_sphere_partition;
+			// slides["24_algorithme.html"] = slide_Algo;
+			// slides["29_echafaudage.html"] = slide_embranch;
+			// slides["35_brut.html"] = slide_brut;
+			// slides["38_refine.html"] = slide_refine;
+			// slides["41_resultats.html"] = slide_results1;
+			// slides["42_resultats.html"] = slide_results2;
+			// slides["43_resultats.html"] = slide_results3;
+			// slides["44_resultats.html"] = slide_results4;
+			// slides["44_1_resultats.html"] = slide_results4_1;
+			// slides["45_resultats.html"] = slide_results5;
+			// slides["46_medical.html"] = slide_medical0;
+			// slides["48_anime.html"] = slide_anime;
+			// slides["47_1_anime.html"] = slide_anime2;
 			// slides[] = ;
 
 			let active_slide;
@@ -176,6 +176,10 @@
 				// console.log(document.getElementsByClassName("progress")[0].innerHTML += ("<p>test</p>"));
 				// console.log(document.getElementsByClassName("progress")[0]);
 				loadSlideHtml("0_titre.html");
+				loadSlideHtml("1_meshes.html");
+				loadSlideHtml("2_cells.html");
+				loadSlideHtml("3_types.html");
+				loadSlideHtml("4_sampling.html");
 				loadSlideHtml("1_objectifs.html").then(() => { 
 					slide_objectif.init(
 						document.getElementById("1_input"),
@@ -187,235 +191,235 @@
 
 					// slide_objectif.open();
 				});
-				loadSlideHtml("2_context.html");
-				loadSlideHtml("3_hexmesh_intro.html");
-				loadSlideHtml("4_hexmesh_criteres.html");
-				loadSlideHtml("5_hexmesh_regul.html");
-				loadSlideHtml("6_hexmesh_JN.html");
-				loadSlideHtml("7_hexmesh_js_reg.html");
-				loadSlideHtml("8_hexmesh_align.html");
-				loadSlideHtml("9_hexmesh_nb.html");
-				loadSlideHtml("10_methodes_gen.html");
-				loadSlideHtml("11_methodes_spe.html");
-				loadSlideHtml("12_methodes_courbes.html");
-				loadSlideHtml("12_methodes_courbes2.html");
-				loadSlideHtml("13_squelette.html");
-				loadSlideHtml("14_squelette.html");
-				loadSlideHtml("plan.html");
+				// loadSlideHtml("2_context.html");
+				// loadSlideHtml("3_hexmesh_intro.html");
+				// loadSlideHtml("4_hexmesh_criteres.html");
+				// loadSlideHtml("5_hexmesh_regul.html");
+				// loadSlideHtml("6_hexmesh_JN.html");
+				// loadSlideHtml("7_hexmesh_js_reg.html");
+				// loadSlideHtml("8_hexmesh_align.html");
+				// loadSlideHtml("9_hexmesh_nb.html");
+				// loadSlideHtml("10_methodes_gen.html");
+				// loadSlideHtml("11_methodes_spe.html");
+				// loadSlideHtml("12_methodes_courbes.html");
+				// loadSlideHtml("12_methodes_courbes2.html");
+				// loadSlideHtml("13_squelette.html");
+				// loadSlideHtml("14_squelette.html");
+				// loadSlideHtml("plan.html");
 				
-				loadSlideHtml("15_algo1D.html").then(() => { 
-					slide_Algo1D.init(
-						document.getElementById("algo1D_0"),
-						document.getElementById("algo1D_1"),
-						document.getElementById("algo1D_2"),
-						document.getElementById("algo1D_3"),
-						document.getElementById("algo1D_4")
-					);
-				});
+				// loadSlideHtml("15_algo1D.html").then(() => { 
+				// 	slide_Algo1D.init(
+				// 		document.getElementById("algo1D_0"),
+				// 		document.getElementById("algo1D_1"),
+				// 		document.getElementById("algo1D_2"),
+				// 		document.getElementById("algo1D_3"),
+				// 		document.getElementById("algo1D_4")
+				// 	);
+				// });
 
-				loadSlideHtml("16_1D2D.html").then(() => { 
-					slide_1D2D.init(
-						document.getElementById("squelette_1D"),
-						document.getElementById("squelette_2D")
-					);
-					fragment_events["16_show"] = slides["16_1D2D.html"].toggle_visible.bind(slides["16_1D2D.html"]);
-				});
+				// loadSlideHtml("16_1D2D.html").then(() => { 
+				// 	slide_1D2D.init(
+				// 		document.getElementById("squelette_1D"),
+				// 		document.getElementById("squelette_2D")
+				// 	);
+				// 	fragment_events["16_show"] = slides["16_1D2D.html"].toggle_visible.bind(slides["16_1D2D.html"]);
+				// });
 
-				loadSlideHtml("17_algo2D.html").then(() => { 
-					slide_Algo2D.init(
-						document.getElementById("algo2D_0"),
-						document.getElementById("algo2D_1"),
-						document.getElementById("algo2D_2"),
-						document.getElementById("algo2D_3")
-					);
-				});
+				// loadSlideHtml("17_algo2D.html").then(() => { 
+				// 	slide_Algo2D.init(
+				// 		document.getElementById("algo2D_0"),
+				// 		document.getElementById("algo2D_1"),
+				// 		document.getElementById("algo2D_2"),
+				// 		document.getElementById("algo2D_3")
+				// 	);
+				// });
 
-				loadSlideHtml("18_intuitions.html");
-				loadSlideHtml("19_embranchements.html");
-				loadSlideHtml("20_embranchements.html");
-				loadSlideHtml("21_embranchements.html");
-				loadSlideHtml("22_embranchements.html");
+				// loadSlideHtml("18_intuitions.html");
+				// loadSlideHtml("19_embranchements.html");
+				// loadSlideHtml("20_embranchements.html");
+				// loadSlideHtml("21_embranchements.html");
+				// loadSlideHtml("22_embranchements.html");
 
-				loadSlideHtml("23_partition.html").then(() => { 
-					slides["23_partition.html"].init(
-						document.getElementById("SP_init"),
-						document.getElementById("SP_Points"),
-						document.getElementById("SP_Raw"),
-						document.getElementById("SP_Remesh"),
-						document.getElementById("SP_Dual"),
-						document.getElementById("SP_Result")
-					);
-				});
+				// loadSlideHtml("23_partition.html").then(() => { 
+				// 	slides["23_partition.html"].init(
+				// 		document.getElementById("SP_init"),
+				// 		document.getElementById("SP_Points"),
+				// 		document.getElementById("SP_Raw"),
+				// 		document.getElementById("SP_Remesh"),
+				// 		document.getElementById("SP_Dual"),
+				// 		document.getElementById("SP_Result")
+				// 	);
+				// });
 
-				loadSlideHtml("24_algorithme.html", "./Slides/24_algorithme.html").then(() => { 
-					slides["24_algorithme.html"].init(
-						document.getElementById("algo_0"),
-						document.getElementById("algo_1"),
-						document.getElementById("algo_2"),
-						document.getElementById("algo_3"),
-						document.getElementById("algo_4")
-					);
-				});
+				// loadSlideHtml("24_algorithme.html", "./Slides/24_algorithme.html").then(() => { 
+				// 	slides["24_algorithme.html"].init(
+				// 		document.getElementById("algo_0"),
+				// 		document.getElementById("algo_1"),
+				// 		document.getElementById("algo_2"),
+				// 		document.getElementById("algo_3"),
+				// 		document.getElementById("algo_4")
+				// 	);
+				// });
 
-				loadSlideHtml("25_blocs.html", "./Slides/25_blocs.html");
-				loadSlideHtml("26_adaptation.html", "./Slides/26_adaptation.html");
-				loadSlideHtml("27_analyse.html", "./Slides/27_analyse.html");
-				loadSlideHtml("28_echafaudage.html", "./Slides/28_echafaudage.html");
+				// loadSlideHtml("25_blocs.html", "./Slides/25_blocs.html");
+				// loadSlideHtml("26_adaptation.html", "./Slides/26_adaptation.html");
+				// loadSlideHtml("27_analyse.html", "./Slides/27_analyse.html");
+				// loadSlideHtml("28_echafaudage.html", "./Slides/28_echafaudage.html");
 
-				loadSlideHtml("29_echafaudage.html", "./Slides/29_echafaudage.html").then(() => { 
-					slides["29_echafaudage.html"].init(
-						document.getElementById("29_gen"),
-						document.getElementById("29_flat"),
-						document.getElementById("29_ortho")
-					);
-				});
+				// loadSlideHtml("29_echafaudage.html", "./Slides/29_echafaudage.html").then(() => { 
+				// 	slides["29_echafaudage.html"].init(
+				// 		document.getElementById("29_gen"),
+				// 		document.getElementById("29_flat"),
+				// 		document.getElementById("29_ortho")
+				// 	);
+				// });
 
-				loadSlideHtml("30_echafaudage.html", "./Slides/30_echafaudage.html");
-				loadSlideHtml("31_propagation.html", "./Slides/31_propagation.html");
-				loadSlideHtml("32_insertion.html", "./Slides/32_insertion.html");
-				loadSlideHtml("33_coutures.html", "./Slides/33_coutures.html");
-				loadSlideHtml("34_transfert.html", "./Slides/34_transfert.html");
+				// loadSlideHtml("30_echafaudage.html", "./Slides/30_echafaudage.html");
+				// loadSlideHtml("31_propagation.html", "./Slides/31_propagation.html");
+				// loadSlideHtml("32_insertion.html", "./Slides/32_insertion.html");
+				// loadSlideHtml("33_coutures.html", "./Slides/33_coutures.html");
+				// loadSlideHtml("34_transfert.html", "./Slides/34_transfert.html");
 
-				loadSlideHtml("35_brut.html", "./Slides/35_brut.html").then(() => { 
-					slides["35_brut.html"].init(
-						document.getElementById("brut_input"),
-						document.getElementById("brut_output")
-					);
-				});
+				// loadSlideHtml("35_brut.html", "./Slides/35_brut.html").then(() => { 
+				// 	slides["35_brut.html"].init(
+				// 		document.getElementById("brut_input"),
+				// 		document.getElementById("brut_output")
+				// 	);
+				// });
 
-				loadSlideHtml("36_refine.html");
-				loadSlideHtml("37_refine.html");
-				loadSlideHtml("38_refine.html", "./Slides/38_refine.html").then(() => { 
-					slides["38_refine.html"].init(
-						document.getElementById("edgecone")
-					);
-					// slides["38_refine.html"].open()
-				});
-				// loadSlideHtml("38_refine.html");
-				loadSlideHtml("39_proprietes.html");
-				loadSlideHtml("40_limites.html");
+				// loadSlideHtml("36_refine.html");
+				// loadSlideHtml("37_refine.html");
+				// loadSlideHtml("38_refine.html", "./Slides/38_refine.html").then(() => { 
+				// 	slides["38_refine.html"].init(
+				// 		document.getElementById("edgecone")
+				// 	);
+				// 	// slides["38_refine.html"].open()
+				// });
+				// // loadSlideHtml("38_refine.html");
+				// loadSlideHtml("39_proprietes.html");
+				// loadSlideHtml("40_limites.html");
 
-				loadSlideHtml("41_resultats.html", "./Slides/41_resultats.html").then(() => { 
-					slides["41_resultats.html"].init(
-						document.getElementById("result_horse"),
-						document.getElementById("result_dinopet")
-					);
+				// loadSlideHtml("41_resultats.html", "./Slides/41_resultats.html").then(() => { 
+				// 	slides["41_resultats.html"].init(
+				// 		document.getElementById("result_horse"),
+				// 		document.getElementById("result_dinopet")
+				// 	);
 
-					fragment_events["41_show"] = slides["41_resultats.html"].toggle_visible.bind(slides["41_resultats.html"]);
-					fragment_events["41_quality"] = slides["41_resultats.html"].toggle_material.bind(slides["41_resultats.html"]);
-					fragment_events["41_clipping"] = slides["41_resultats.html"].toggle_clipping.bind(slides["41_resultats.html"]);
+				// 	fragment_events["41_show"] = slides["41_resultats.html"].toggle_visible.bind(slides["41_resultats.html"]);
+				// 	fragment_events["41_quality"] = slides["41_resultats.html"].toggle_material.bind(slides["41_resultats.html"]);
+				// 	fragment_events["41_clipping"] = slides["41_resultats.html"].toggle_clipping.bind(slides["41_resultats.html"]);
 
-				});
+				// });
 
-				loadSlideHtml("41_resultats.html", "./Slides/41_resultats.html").then(() => { 
-					slides["41_resultats.html"].init(
-						document.getElementById("result_horse"),
-						document.getElementById("result_dinopet")
-					);
+				// loadSlideHtml("41_resultats.html", "./Slides/41_resultats.html").then(() => { 
+				// 	slides["41_resultats.html"].init(
+				// 		document.getElementById("result_horse"),
+				// 		document.getElementById("result_dinopet")
+				// 	);
 
-					fragment_events["41_show"] = slides["41_resultats.html"].toggle_visible.bind(slides["41_resultats.html"]);
-					fragment_events["41_quality"] = slides["41_resultats.html"].toggle_material.bind(slides["41_resultats.html"]);
-					fragment_events["41_clipping"] = slides["41_resultats.html"].toggle_clipping.bind(slides["41_resultats.html"]);
+				// 	fragment_events["41_show"] = slides["41_resultats.html"].toggle_visible.bind(slides["41_resultats.html"]);
+				// 	fragment_events["41_quality"] = slides["41_resultats.html"].toggle_material.bind(slides["41_resultats.html"]);
+				// 	fragment_events["41_clipping"] = slides["41_resultats.html"].toggle_clipping.bind(slides["41_resultats.html"]);
 
-				});
+				// });
 
-				loadSlideHtml("42_resultats.html", "./Slides/42_resultats.html").then(() => { 
-					slides["42_resultats.html"].init(
-						document.getElementById("result_metatron"),
-						document.getElementById("result_santa")
-					);
+				// loadSlideHtml("42_resultats.html", "./Slides/42_resultats.html").then(() => { 
+				// 	slides["42_resultats.html"].init(
+				// 		document.getElementById("result_metatron"),
+				// 		document.getElementById("result_santa")
+				// 	);
 
-					// fragment_events["42_show"] = slides["42_resultats.html"].toggle_visible.bind(slides["42_resultats.html"]);
-					fragment_events["42_quality"] = slides["42_resultats.html"].toggle_material.bind(slides["42_resultats.html"]);
-					fragment_events["42_clipping"] = slides["42_resultats.html"].toggle_clipping.bind(slides["42_resultats.html"]);
-				});
+				// 	// fragment_events["42_show"] = slides["42_resultats.html"].toggle_visible.bind(slides["42_resultats.html"]);
+				// 	fragment_events["42_quality"] = slides["42_resultats.html"].toggle_material.bind(slides["42_resultats.html"]);
+				// 	fragment_events["42_clipping"] = slides["42_resultats.html"].toggle_clipping.bind(slides["42_resultats.html"]);
+				// });
 
-				loadSlideHtml("43_resultats.html", "./Slides/43_resultats.html").then(() => { 
-					slides["43_resultats.html"].init(
-						document.getElementById("result_holes0"),
-						document.getElementById("result_holes1")
-					);
+				// loadSlideHtml("43_resultats.html", "./Slides/43_resultats.html").then(() => { 
+				// 	slides["43_resultats.html"].init(
+				// 		document.getElementById("result_holes0"),
+				// 		document.getElementById("result_holes1")
+				// 	);
 
-					fragment_events["43_show"] = slides["43_resultats.html"].toggle_visible.bind(slides["43_resultats.html"]);
-					fragment_events["43_quality"] = slides["43_resultats.html"].toggle_material.bind(slides["43_resultats.html"]);
-					fragment_events["43_clipping"] = slides["43_resultats.html"].toggle_clipping.bind(slides["43_resultats.html"]);
-				});
-
-
-				loadSlideHtml("44_resultats.html", "./Slides/44_resultats.html").then(() => { 
-					slides["44_resultats.html"].init(
-						document.getElementById("result_dilo"),
-						document.getElementById("result_hand")
-					);
-
-					fragment_events["44_show"] = slides["44_resultats.html"].toggle_visible.bind(slides["44_resultats.html"]);
-					fragment_events["44_quality"] = slides["44_resultats.html"].toggle_material.bind(slides["44_resultats.html"]);
-					fragment_events["44_clipping"] = slides["44_resultats.html"].toggle_clipping.bind(slides["44_resultats.html"]);
-
-				});
-
-				loadSlideHtml("44_1_resultats.html", "./Slides/44_1_resultats.html").then(() => { 
-					slides["44_1_resultats.html"].init(
-						document.getElementById("44_1_sculpture"),
-					);
-
-					// fragment_events["44_1_show"] = slides["44_1_resultats.html"].toggleClipping.bind(slides["44_1_resultats.html"]);
-					fragment_events["44_1_show"] = slides["44_1_resultats.html"].toggleThanos.bind(slides["44_1_resultats.html"]);
-					// fragment_events["44_clipping"] = slides["44_1_resultats.html"].toggle_clipping.bind(slides["44_1_resultats.html"]);
-
-					// Reveal.slide(52);
-				});
+				// 	fragment_events["43_show"] = slides["43_resultats.html"].toggle_visible.bind(slides["43_resultats.html"]);
+				// 	fragment_events["43_quality"] = slides["43_resultats.html"].toggle_material.bind(slides["43_resultats.html"]);
+				// 	fragment_events["43_clipping"] = slides["43_resultats.html"].toggle_clipping.bind(slides["43_resultats.html"]);
+				// });
 
 
-				loadSlideHtml("45_resultats.html", "./Slides/45_resultats.html").then(() => { 
-					slides["45_resultats.html"].init(
-						document.getElementById("results_vessels")
-					);
-					// slides["45_resultats.html"].open()
-				});
+				// loadSlideHtml("44_resultats.html", "./Slides/44_resultats.html").then(() => { 
+				// 	slides["44_resultats.html"].init(
+				// 		document.getElementById("result_dilo"),
+				// 		document.getElementById("result_hand")
+				// 	);
+
+				// 	fragment_events["44_show"] = slides["44_resultats.html"].toggle_visible.bind(slides["44_resultats.html"]);
+				// 	fragment_events["44_quality"] = slides["44_resultats.html"].toggle_material.bind(slides["44_resultats.html"]);
+				// 	fragment_events["44_clipping"] = slides["44_resultats.html"].toggle_clipping.bind(slides["44_resultats.html"]);
+
+				// });
+
+				// loadSlideHtml("44_1_resultats.html", "./Slides/44_1_resultats.html").then(() => { 
+				// 	slides["44_1_resultats.html"].init(
+				// 		document.getElementById("44_1_sculpture"),
+				// 	);
+
+				// 	// fragment_events["44_1_show"] = slides["44_1_resultats.html"].toggleClipping.bind(slides["44_1_resultats.html"]);
+				// 	fragment_events["44_1_show"] = slides["44_1_resultats.html"].toggleThanos.bind(slides["44_1_resultats.html"]);
+				// 	// fragment_events["44_clipping"] = slides["44_1_resultats.html"].toggle_clipping.bind(slides["44_1_resultats.html"]);
+
+				// 	// Reveal.slide(52);
+				// });
+
+
+				// loadSlideHtml("45_resultats.html", "./Slides/45_resultats.html").then(() => { 
+				// 	slides["45_resultats.html"].init(
+				// 		document.getElementById("results_vessels")
+				// 	);
+				// 	// slides["45_resultats.html"].open()
+				// });
 
 				
-				loadSlideHtml("46_medical.html", "./Slides/46_medical.html").then(() => { 
-					slides["46_medical.html"].init(
-						document.getElementById("results_lungs")
-					);
-				});
-				loadSlideHtml("46_1_medical.html");
-				// loadSlideHtml("47_anime.html");
-				// loadSlideHtml("47_1_anime.html");
-				loadSlideHtml("47_1_anime.html", "./Slides/47_1_anime.html").then(() => { 
-					slides["47_1_anime.html"].init(
-						document.getElementById("anim0"),
-						document.getElementById("anim1"),
-						document.getElementById("anim2"),
-						document.getElementById("anim3")
-					);
-					fragment_events["46_showsurf"] = slides["47_1_anime.html"].showsurf1.bind(slides["47_1_anime.html"]);
-					fragment_events["46_show0"] = slides["47_1_anime.html"].showMesh0.bind(slides["47_1_anime.html"]);
-					fragment_events["46_show1"] = slides["47_1_anime.html"].showMesh1.bind(slides["47_1_anime.html"]);
-					fragment_events["46_show2"] = slides["47_1_anime.html"].showMesh2.bind(slides["47_1_anime.html"]);
-					fragment_events["46_show3"] = slides["47_1_anime.html"].showMesh3.bind(slides["47_1_anime.html"]);
-					// Reveal.slide(49);
-				});
-				loadSlideHtml("48_anime.html", "./Slides/48_anime.html").then(() => { 
-					slides["48_anime.html"].init(
-						document.getElementById("animated_lungs")
-					);
-					// slides["48_anime.html"].open()
-				});
+				// loadSlideHtml("46_medical.html", "./Slides/46_medical.html").then(() => { 
+				// 	slides["46_medical.html"].init(
+				// 		document.getElementById("results_lungs")
+				// 	);
+				// });
+				// loadSlideHtml("46_1_medical.html");
+				// // loadSlideHtml("47_anime.html");
+				// // loadSlideHtml("47_1_anime.html");
+				// loadSlideHtml("47_1_anime.html", "./Slides/47_1_anime.html").then(() => { 
+				// 	slides["47_1_anime.html"].init(
+				// 		document.getElementById("anim0"),
+				// 		document.getElementById("anim1"),
+				// 		document.getElementById("anim2"),
+				// 		document.getElementById("anim3")
+				// 	);
+				// 	fragment_events["46_showsurf"] = slides["47_1_anime.html"].showsurf1.bind(slides["47_1_anime.html"]);
+				// 	fragment_events["46_show0"] = slides["47_1_anime.html"].showMesh0.bind(slides["47_1_anime.html"]);
+				// 	fragment_events["46_show1"] = slides["47_1_anime.html"].showMesh1.bind(slides["47_1_anime.html"]);
+				// 	fragment_events["46_show2"] = slides["47_1_anime.html"].showMesh2.bind(slides["47_1_anime.html"]);
+				// 	fragment_events["46_show3"] = slides["47_1_anime.html"].showMesh3.bind(slides["47_1_anime.html"]);
+				// 	// Reveal.slide(49);
+				// });
+				// loadSlideHtml("48_anime.html", "./Slides/48_anime.html").then(() => { 
+				// 	slides["48_anime.html"].init(
+				// 		document.getElementById("animated_lungs")
+				// 	);
+				// 	// slides["48_anime.html"].open()
+				// });
 
-				loadSlideHtml("49_theorique.html");
-				loadSlideHtml("50_theorique.html");
-				// loadSlideHtml("51_perspectives.html");
-				loadSlideHtml("52_perspectives.html");
-				loadSlideHtml("53_perspectives.html");
-				loadSlideHtml("54_perspectives.html");
-				loadSlideHtml("55_perspectives.html");
+				// loadSlideHtml("49_theorique.html");
+				// loadSlideHtml("50_theorique.html");
+				// // loadSlideHtml("51_perspectives.html");
+				// loadSlideHtml("52_perspectives.html");
+				// loadSlideHtml("53_perspectives.html");
+				// loadSlideHtml("54_perspectives.html");
+				// loadSlideHtml("55_perspectives.html");
 
-				loadSlideHtml("sep_algorithme.html");
-				loadSlideHtml("sep_conclusions.html");
-				loadSlideHtml("sep_resultats.html");
-				loadSlideHtml("sep_medicale.html");
+				// loadSlideHtml("sep_algorithme.html");
+				// loadSlideHtml("sep_conclusions.html");
+				// loadSlideHtml("sep_resultats.html");
+				// loadSlideHtml("sep_medicale.html");
 				// Reveal.slide(36);
 				Reveal.slide(0);
 			});
