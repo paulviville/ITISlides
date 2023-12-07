@@ -1,24 +1,15 @@
-<h2>Raffinement Géométrique</h2>
+<h2>Geometric Optimization</h2>
 <hr style="width: 70%; display:flex; justify-content:space-evenly;">
+<p style="font-size:50px; margin-top: -20px;"><b>Edge Cone Rectification</b></p>
 <div class="r-hstack">
-	<div style="padding-right: 8%;">  
-		<img src="Images/Refine/catmull.png" width="440px">
-		<p style="font-size:50px; margin-top: -20px;">Subdivision</p>
+	<div style="padding-right: 5%;">  
+		<img src="Images/Utils/edgcone.png" width="500px">
+		<!-- <p style="font-size:25px; margin-top: -10px;">Fibres</p> -->
 	</div>
-	<div style="padding-right: 8%;">  
-		<img src="Images/Refine/pillowing (copy).PNG" width="440px" >
-		<p style="font-size:50px; margin-top: -20px;">Coussinage</p>
-	</div>
-	<div>  
-		<img src="Images/Refine/placage.PNG" width="440px">
-		<p style="font-size:50px; margin-top: -20px;">Placage<br> à la surface</p>
-	</div>
+	<canvas id="edgecone" width="800" height="800" ></canvas>
+
 </div>
 
 <aside class="notes">
-	<br>- les principales opérations que nous pourront utiliser pour raffiner:
-	<br>- subdivision, coussinage, et le placage à la surface
-	<br>- subidivison: 1 hex -> 8 hexs
-	<br>- coussinage: ajout d'une couche sur toute la surface, pour n'exposer qu'une face par hexa au bord
-	<br>- placage à la surface pour mieux approximer le domaine.
+	<br>- 
 </aside>

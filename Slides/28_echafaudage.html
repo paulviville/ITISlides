@@ -1,27 +1,27 @@
-<h2>3 - Construction de l'&#xC9;chafaudage</h2>
+<h2>3 - Scaffold Construction</h2>
 <hr style="width: 70%; display:flex; justify-content:space-evenly;">
-<p style="font-size:60px; margin-top: -20px;"><b>Embranchements</b></p>
+<h3>Extremities and Joints</h3>
 <div class="r-hstack">  
 	<div class="r-vstack">
 		<div>  
-			<img src="Images/Echafaudage/branching0.png" height="360px" style="padding-right: 10%; margin: 0px;">
-			<img src="Images/Echafaudage/branching1.png" height="360px" style="padding-right: 0%; margin: 0px;">
-			<p style="font-size:44px; margin-top: 0px;">branches</p>
+			<img src="Images/Echafaudage/joint3.png" height="360px" style="padding-right: 10%; margin: 0px;">
+			<img src="Images/Echafaudage/joint2.png" height="360px" style="padding-right: 0%; margin: 0px;">
+			<p style="font-size:44px; margin-top: 0px;">No geometry</p>
 		</div>
 	</div>
 	<div class="r-vstack">
 		<div>  
-			<img src="Images/Echafaudage/branching3.png" height="360px" style="padding-right: 10%; margin: 0px;">
-			<img src="Images/Echafaudage/branching2.png" height="360px" style="padding-right: 0%; margin: 0px;">
-			<p style="font-size:44px; margin-top: 0px;">branches-feuillets</p>
+			<img src="Images/Echafaudage/joint1.png" height="360px" style="padding-right: 10%; margin: 0px;">
+			<img src="Images/Echafaudage/joint0.png" height="360px" style="padding-right: 0%; margin: 0px;">
+			<p style="font-size:44px; margin-top: 0px;">Geometric constraints</p>
 		</div>
 	</div>
 </div>
+
 <aside class="notes">
-	<br>- La Construction de l'échafaudage encodant la connectivité et géométrie va pouvoir commencer
-	<br>- Sur les embranchements entre des branches et ou des feuillets
-	<br>- construction d'un polyèdre quad par partition de sphère (avec deux cas particuliers)
-	<br>- utilisation de la direction des branches et direction moyenne des feuillets en entrée de la partition
-	<br>-
-	<br>- les sommets d'embranchements sont donc associés a un échafaudage quad avec des positions de sommets fixées, ou contraintes.
+	<br>- placement d'échafaudage sur les articulations et extremités pour la connectivité
+	<br>- pour permettre un traitement générique
+	<br>- 2 types: 
+	<br>- le long des branches -> 1 quad topologique sans contrainte geometrique, libre
+	<br>- articulations branches/feuillet -> 1 quad contraint par direction et normale des feuillets
 </aside>

@@ -18,60 +18,59 @@
 				<section id="2_cells.html"></section>
 				<section id="3_types.html"></section>
 				<section id="4_sampling.html"></section>
-				<section id="1_objectifs.html"></section>
-				<!-- <section id="2_context.html"></section>
-				<section id="3_hexmesh_intro.html"></section>
-				<section id="4_hexmesh_criteres.html"></section>
-				<section id="5_hexmesh_regul.html"></section>
-				<section id="6_hexmesh_JN.html"></section>
-				<section id="7_hexmesh_js_reg.html"></section>
-				<section id="8_hexmesh_align.html"></section>
-				<section id="9_hexmesh_nb.html"></section>
-				<section id="10_methodes_gen.html"></section>
-				<section id="11_methodes_spe.html"></section>
-				<section id="12_methodes_courbes.html"></section>
-				<section id="12_methodes_courbes2.html"></section>
-				<section id="13_squelette.html"></section>
-				<section id="15_algo1D.html"></section>
-				<section id="16_1D2D.html"></section>
-				<section id="17_algo2D.html"></section>
-				<section id="18_intuitions.html"></section>
-				<section id="plan.html"></section>
-				<section id="14_squelette.html"></section>
-				<section id="19_embranchements.html"></section>
-				<section id="20_embranchements.html"></section>
-				<section id="21_embranchements.html"></section>
-				<section id="22_embranchements.html"></section>
-				<section id="23_partition.html"></section>
-				<section id="sep_algorithme.html"></section>
+				<section id="5_iso.html"></section>
+				<section id="6_structure.html"></section>
+				<section id="7_rendering.html"></section>
+				<section id="8_simulation.html"></section>
+				<section id="9_cost.html"></section>
+				<section id="10_hexmesh.html"></section>
+				<section id="11_criteria.html"></section>
+				<section id="12_regularity.html"></section>
+				<section id="13_shape.html"></section>
+				<section id="14_shapeReg.html"></section>
+				<section id="15_alignment.html"></section>
+				<section id="16_nbelements.html"></section>
+				<section id="17_polycubes.html"></section>
+				<section id="18_fields.html"></section>
+				<section id="19_sheets.html"></section>
+				<section id="20_octree.html"></section>
+				<section id="21_skelbased.html"></section>
+				<section id="22_algo2D.html"></section>
+				<section id="23_blocs.html"></section>
 				<section id="24_algorithme.html"></section>
-				<section id="25_blocs.html"></section>
-				<section id="26_adaptation.html"></section>
-				<section id="27_analyse.html"></section>
+				<section id="25_adaptation.html"></section>
+				<section id="26_analyse.html"></section>
+				<section id="27_echafaudage.html"></section>
 				<section id="28_echafaudage.html"></section>
 				<section id="29_echafaudage.html"></section>
-				<section id="30_echafaudage.html"></section>
-				<section id="31_propagation.html"></section>
-				<section id="32_insertion.html"></section>
-				<section id="33_coutures.html"></section>
-				<section id="34_transfert.html"></section>
-				<section id="35_brut.html"></section>
+				<section id="30_propagation.html"></section>
+				<section id="31_insertion.html"></section>
+				<section id="32_coutures.html"></section>
+				<section id="33_transfert.html"></section>
+				<section id="34_brut.html"></section>
+				<section id="35_refine.html"></section>
 				<section id="36_refine.html"></section>
+				<section id="37_resultats.html"></section>
+				<section id="38_resultats.html"></section>
+				<section id="39_resultats.html"></section>
+				<section id="40_medical.html"></section>
+				<section id="41_anime.html"></section>
+				<!--	<section id="30_echafaudage.html"></section>
+				<section id="31_insertion.html"></section>
 				<section id="37_refine.html"></section>
-				<section id="38_refine.html"></section>
 				<section id="39_proprietes.html"></section>
 				<section id="40_limites.html"></section>
 				<section id="sep_resultats.html"></section>
 				<section id="45_resultats.html"></section>
-				<section id="41_resultats.html"></section>
-				<section id="42_resultats.html"></section>
+				<section id="37_resultats.html"></section>
+				<section id="38_resultats.html"></section>
 				<section id="43_resultats.html"></section>
-				<section id="44_resultats.html"></section>
+				<section id="39_resultats.html"></section>
 				<section id="sep_medicale.html"></section>
-				<section id="46_medical.html"></section>
+				<section id="40_medical.html"></section>
 				<section id="46_1_medical.html"></section>
 				<section id="47_1_anime.html"></section>
-				<section id="48_anime.html"></section>
+				<section id="41_anime.html"></section>
 				<section id="sep_conclusions.html"></section>
 				<section id="49_theorique.html"></section>
 				<section id="50_theorique.html"></section>
@@ -87,45 +86,42 @@
 			import Reveal from './Reveal/reveal.esm.js'
 
 			import Slide from './Slides/Slide.js';
-			import {slide_objectif} from './Slides/1_objectif.js';
-			import {slide_Algo1D} from './Slides/15_algo1D.js';
-			import {slide_1D2D} from './Slides/16_1D2D.js';
-			import {slide_Algo2D} from './Slides/17_algo2D.js';
-			import {slide_sphere_partition} from './Slides/23_partition.js';
+			import {slide_objectif} from './Slides/22_objectif.js';
+			import {slide_hexmesh} from './Slides/10_hexmesh.js';
+			import {slide_Algo2D} from './Slides/22_algo2D.js';
 			import {slide_Algo} from './Slides/24_algorithme.js';
-			import {slide_embranch} from './Slides/29_echafaudage.js';
-			import {slide_brut} from './Slides/35_brut.js';
-			import {slide_refine} from './Slides/38_refine.js';
-			import {slide_results1} from './Slides/41_resultats.js';
-			import {slide_results2} from './Slides/42_resultats.js';
-			import {slide_results3} from './Slides/43_resultats.js';
-			import {slide_results4} from './Slides/44_resultats.js';
-			import {slide_results4_1} from './Slides/44_1_resultats.js';
-			import {slide_results5} from './Slides/45_resultats.js';
-			import {slide_medical0} from './Slides/46_medical.js';
-			import {slide_anime} from './Slides/48_anime.js';
-			import {slide_anime2} from './Slides/47_1_anime.js';
+			import {slide_brut} from './Slides/34_brut.js';
+			import {slide_refine} from './Slides/36_refine.js';
+			import {slide_results1} from './Slides/37_resultats.js';
+			import {slide_results2} from './Slides/38_resultats.js';
+			// import {slide_results3} from './Slides/43_resultats.js';
+			import {slide_results4} from './Slides/39_resultats.js';
+			// import {slide_results4_1} from './Slides/44_1_resultats.js';
+			// import {slide_results5} from './Slides/45_resultats.js';
+			import {slide_medical0} from './Slides/40_medical.js';
+			// import {slide_anime} from './Slides/41_anime.js';
+			import {slide_anime} from './Slides/41_anime.js';
 
 			import RevealNotes from './Reveal/notes/notes.esm.js'
 
 			const slides = new Array();
-			slides["1_objectifs.html"] = slide_objectif;
-			// slides["15_algo1D.html"] = slide_Algo1D;
+			slides["22_objectifs.html"] = slide_objectif;
+			slides["10_hexmesh.html"] = slide_hexmesh;
 			// slides["16_1D2D.html"] = slide_1D2D;
-			// slides["17_algo2D.html"] = slide_Algo2D;
+			slides["22_algo2D.html"] = slide_Algo2D;
 			// slides["23_partition.html"] = slide_sphere_partition;
-			// slides["24_algorithme.html"] = slide_Algo;
+			slides["24_algorithme.html"] = slide_Algo;
 			// slides["29_echafaudage.html"] = slide_embranch;
-			// slides["35_brut.html"] = slide_brut;
-			// slides["38_refine.html"] = slide_refine;
-			// slides["41_resultats.html"] = slide_results1;
-			// slides["42_resultats.html"] = slide_results2;
+			slides["34_brut.html"] = slide_brut;
+			slides["36_refine.html"] = slide_refine;
+			slides["37_resultats.html"] = slide_results1;
+			slides["38_resultats.html"] = slide_results2;
 			// slides["43_resultats.html"] = slide_results3;
-			// slides["44_resultats.html"] = slide_results4;
+			slides["39_resultats.html"] = slide_results4;
 			// slides["44_1_resultats.html"] = slide_results4_1;
 			// slides["45_resultats.html"] = slide_results5;
-			// slides["46_medical.html"] = slide_medical0;
-			// slides["48_anime.html"] = slide_anime;
+			slides["40_medical.html"] = slide_medical0;
+			slides["41_anime.html"] = slide_anime;
 			// slides["47_1_anime.html"] = slide_anime2;
 			// slides[] = ;
 
@@ -180,32 +176,56 @@
 				loadSlideHtml("2_cells.html");
 				loadSlideHtml("3_types.html");
 				loadSlideHtml("4_sampling.html");
-				loadSlideHtml("1_objectifs.html").then(() => { 
-					slide_objectif.init(
-						document.getElementById("1_input"),
-						document.getElementById("1_output")
+				loadSlideHtml("5_iso.html");
+				loadSlideHtml("6_structure.html");
+				loadSlideHtml("7_rendering.html");
+				loadSlideHtml("8_simulation.html");
+				loadSlideHtml("9_cost.html");
+				
+				loadSlideHtml("10_hexmesh.html").then(() => { 
+					slide_hexmesh.init(
+						document.getElementById("hexmesh_holes"),
 					);
 
-					fragment_events["1_clipping"] = slides["1_objectifs.html"].toggleClipping.bind(slides["1_objectifs.html"]);
+					fragment_events["1_clipping"] = slides["10_hexmesh.html"].toggleClipping.bind(slides["10_hexmesh.html"]);
 
 
-					// slide_objectif.open();
 				});
-				// loadSlideHtml("2_context.html");
-				// loadSlideHtml("3_hexmesh_intro.html");
-				// loadSlideHtml("4_hexmesh_criteres.html");
-				// loadSlideHtml("5_hexmesh_regul.html");
-				// loadSlideHtml("6_hexmesh_JN.html");
-				// loadSlideHtml("7_hexmesh_js_reg.html");
-				// loadSlideHtml("8_hexmesh_align.html");
-				// loadSlideHtml("9_hexmesh_nb.html");
-				// loadSlideHtml("10_methodes_gen.html");
-				// loadSlideHtml("11_methodes_spe.html");
-				// loadSlideHtml("12_methodes_courbes.html");
-				// loadSlideHtml("12_methodes_courbes2.html");
-				// loadSlideHtml("13_squelette.html");
-				// loadSlideHtml("14_squelette.html");
-				// loadSlideHtml("plan.html");
+
+				loadSlideHtml("11_criteria.html");
+				loadSlideHtml("12_regularity.html");
+				loadSlideHtml("13_shape.html");
+				loadSlideHtml("14_shapeReg.html");
+				loadSlideHtml("15_alignment.html");
+				loadSlideHtml("16_nbelements.html");
+				loadSlideHtml("17_polycubes.html");
+				loadSlideHtml("18_fields.html");
+				loadSlideHtml("19_sheets.html");
+				loadSlideHtml("20_octree.html");
+				loadSlideHtml("21_skelbased.html");
+
+				loadSlideHtml("22_algo2D.html").then(() => { 
+					slide_Algo2D.init(
+						document.getElementById("algo2D_0"),
+						document.getElementById("algo2D_1"),
+						document.getElementById("algo2D_2"),
+						document.getElementById("algo2D_3")
+					);
+				});
+
+				// loadSlideHtml("22_objectifs.html").then(() => { 
+				// 	slide_objectif.init(
+				// 		document.getElementById("1_input"),
+				// 		document.getElementById("1_output")
+				// 	);
+
+				// 	fragment_events["1_clipping"] = slides["22_objectifs.html"].toggleClipping.bind(slides["22_objectifs.html"]);
+
+
+				// 	// slide_objectif.open();
+				// });
+				loadSlideHtml("23_blocs.html", "./Slides/23_blocs.html");
+
 				
 				// loadSlideHtml("15_algo1D.html").then(() => { 
 				// 	slide_Algo1D.init(
@@ -225,14 +245,7 @@
 				// 	fragment_events["16_show"] = slides["16_1D2D.html"].toggle_visible.bind(slides["16_1D2D.html"]);
 				// });
 
-				// loadSlideHtml("17_algo2D.html").then(() => { 
-				// 	slide_Algo2D.init(
-				// 		document.getElementById("algo2D_0"),
-				// 		document.getElementById("algo2D_1"),
-				// 		document.getElementById("algo2D_2"),
-				// 		document.getElementById("algo2D_3")
-				// 	);
-				// });
+
 
 				// loadSlideHtml("18_intuitions.html");
 				// loadSlideHtml("19_embranchements.html");
@@ -251,20 +264,22 @@
 				// 	);
 				// });
 
-				// loadSlideHtml("24_algorithme.html", "./Slides/24_algorithme.html").then(() => { 
-				// 	slides["24_algorithme.html"].init(
-				// 		document.getElementById("algo_0"),
-				// 		document.getElementById("algo_1"),
-				// 		document.getElementById("algo_2"),
-				// 		document.getElementById("algo_3"),
-				// 		document.getElementById("algo_4")
-				// 	);
-				// });
+				loadSlideHtml("24_algorithme.html", "./Slides/24_algorithme.html").then(() => { 
+					slides["24_algorithme.html"].init(
+						document.getElementById("algo_0"),
+						document.getElementById("algo_1"),
+						document.getElementById("algo_2"),
+						document.getElementById("algo_3"),
+						document.getElementById("algo_4")
+					);
+				});
 
-				// loadSlideHtml("25_blocs.html", "./Slides/25_blocs.html");
-				// loadSlideHtml("26_adaptation.html", "./Slides/26_adaptation.html");
-				// loadSlideHtml("27_analyse.html", "./Slides/27_analyse.html");
-				// loadSlideHtml("28_echafaudage.html", "./Slides/28_echafaudage.html");
+				loadSlideHtml("25_adaptation.html", "./Slides/25_adaptation.html");
+				loadSlideHtml("26_analyse.html", "./Slides/26_analyse.html");
+				loadSlideHtml("27_echafaudage.html", "./Slides/27_echafaudage.html");
+				loadSlideHtml("28_echafaudage.html", "./Slides/28_echafaudage.html");
+				loadSlideHtml("29_echafaudage.html", "./Slides/29_echafaudage.html");
+				loadSlideHtml("30_propagation.html", "./Slides/30_propagation.html");
 
 				// loadSlideHtml("29_echafaudage.html", "./Slides/29_echafaudage.html").then(() => { 
 				// 	slides["29_echafaudage.html"].init(
@@ -276,63 +291,53 @@
 
 				// loadSlideHtml("30_echafaudage.html", "./Slides/30_echafaudage.html");
 				// loadSlideHtml("31_propagation.html", "./Slides/31_propagation.html");
-				// loadSlideHtml("32_insertion.html", "./Slides/32_insertion.html");
-				// loadSlideHtml("33_coutures.html", "./Slides/33_coutures.html");
+				loadSlideHtml("31_insertion.html", "./Slides/31_insertion.html");
+				loadSlideHtml("32_coutures.html", "./Slides/32_coutures.html");
+				loadSlideHtml("33_transfert.html", "./Slides/33_transfert.html");
 				// loadSlideHtml("34_transfert.html", "./Slides/34_transfert.html");
 
-				// loadSlideHtml("35_brut.html", "./Slides/35_brut.html").then(() => { 
-				// 	slides["35_brut.html"].init(
-				// 		document.getElementById("brut_input"),
-				// 		document.getElementById("brut_output")
-				// 	);
-				// });
+				loadSlideHtml("34_brut.html", "./Slides/34_brut.html").then(() => { 
+					slides["34_brut.html"].init(
+						document.getElementById("brut_input"),
+						document.getElementById("brut_output")
+					);
+				});
 
-				// loadSlideHtml("36_refine.html");
+				loadSlideHtml("35_refine.html");
 				// loadSlideHtml("37_refine.html");
-				// loadSlideHtml("38_refine.html", "./Slides/38_refine.html").then(() => { 
-				// 	slides["38_refine.html"].init(
-				// 		document.getElementById("edgecone")
-				// 	);
-				// 	// slides["38_refine.html"].open()
-				// });
-				// // loadSlideHtml("38_refine.html");
+				loadSlideHtml("36_refine.html", "./Slides/36_refine.html").then(() => { 
+					slides["36_refine.html"].init(
+						document.getElementById("edgecone")
+					);
+					// slides["37_refine.html"].open()
+				});
+				// // loadSlideHtml("37_refine.html");
 				// loadSlideHtml("39_proprietes.html");
 				// loadSlideHtml("40_limites.html");
 
-				// loadSlideHtml("41_resultats.html", "./Slides/41_resultats.html").then(() => { 
-				// 	slides["41_resultats.html"].init(
-				// 		document.getElementById("result_horse"),
-				// 		document.getElementById("result_dinopet")
-				// 	);
+				loadSlideHtml("37_resultats.html", "./Slides/37_resultats.html").then(() => { 
+					slides["37_resultats.html"].init(
+						document.getElementById("result_horse"),
+						document.getElementById("result_dinopet")
+					);
 
-				// 	fragment_events["41_show"] = slides["41_resultats.html"].toggle_visible.bind(slides["41_resultats.html"]);
-				// 	fragment_events["41_quality"] = slides["41_resultats.html"].toggle_material.bind(slides["41_resultats.html"]);
-				// 	fragment_events["41_clipping"] = slides["41_resultats.html"].toggle_clipping.bind(slides["41_resultats.html"]);
+					fragment_events["41_show"] = slides["37_resultats.html"].toggle_visible.bind(slides["37_resultats.html"]);
+					fragment_events["41_quality"] = slides["37_resultats.html"].toggle_material.bind(slides["37_resultats.html"]);
+					fragment_events["41_clipping"] = slides["37_resultats.html"].toggle_clipping.bind(slides["37_resultats.html"]);
 
-				// });
+				});
 
-				// loadSlideHtml("41_resultats.html", "./Slides/41_resultats.html").then(() => { 
-				// 	slides["41_resultats.html"].init(
-				// 		document.getElementById("result_horse"),
-				// 		document.getElementById("result_dinopet")
-				// 	);
 
-				// 	fragment_events["41_show"] = slides["41_resultats.html"].toggle_visible.bind(slides["41_resultats.html"]);
-				// 	fragment_events["41_quality"] = slides["41_resultats.html"].toggle_material.bind(slides["41_resultats.html"]);
-				// 	fragment_events["41_clipping"] = slides["41_resultats.html"].toggle_clipping.bind(slides["41_resultats.html"]);
+				loadSlideHtml("38_resultats.html", "./Slides/38_resultats.html").then(() => { 
+					slides["38_resultats.html"].init(
+						document.getElementById("result_metatron"),
+						document.getElementById("result_santa")
+					);
 
-				// });
-
-				// loadSlideHtml("42_resultats.html", "./Slides/42_resultats.html").then(() => { 
-				// 	slides["42_resultats.html"].init(
-				// 		document.getElementById("result_metatron"),
-				// 		document.getElementById("result_santa")
-				// 	);
-
-				// 	// fragment_events["42_show"] = slides["42_resultats.html"].toggle_visible.bind(slides["42_resultats.html"]);
-				// 	fragment_events["42_quality"] = slides["42_resultats.html"].toggle_material.bind(slides["42_resultats.html"]);
-				// 	fragment_events["42_clipping"] = slides["42_resultats.html"].toggle_clipping.bind(slides["42_resultats.html"]);
-				// });
+					// fragment_events["42_show"] = slides["38_resultats.html"].toggle_visible.bind(slides["38_resultats.html"]);
+					fragment_events["42_quality"] = slides["38_resultats.html"].toggle_material.bind(slides["38_resultats.html"]);
+					fragment_events["42_clipping"] = slides["38_resultats.html"].toggle_clipping.bind(slides["38_resultats.html"]);
+				});
 
 				// loadSlideHtml("43_resultats.html", "./Slides/43_resultats.html").then(() => { 
 				// 	slides["43_resultats.html"].init(
@@ -346,17 +351,17 @@
 				// });
 
 
-				// loadSlideHtml("44_resultats.html", "./Slides/44_resultats.html").then(() => { 
-				// 	slides["44_resultats.html"].init(
-				// 		document.getElementById("result_dilo"),
-				// 		document.getElementById("result_hand")
-				// 	);
+				loadSlideHtml("39_resultats.html", "./Slides/39_resultats.html").then(() => { 
+					slides["39_resultats.html"].init(
+						document.getElementById("result_dilo"),
+						document.getElementById("result_hand")
+					);
 
-				// 	fragment_events["44_show"] = slides["44_resultats.html"].toggle_visible.bind(slides["44_resultats.html"]);
-				// 	fragment_events["44_quality"] = slides["44_resultats.html"].toggle_material.bind(slides["44_resultats.html"]);
-				// 	fragment_events["44_clipping"] = slides["44_resultats.html"].toggle_clipping.bind(slides["44_resultats.html"]);
+					fragment_events["44_show"] = slides["39_resultats.html"].toggle_visible.bind(slides["39_resultats.html"]);
+					fragment_events["44_quality"] = slides["39_resultats.html"].toggle_material.bind(slides["39_resultats.html"]);
+					fragment_events["44_clipping"] = slides["39_resultats.html"].toggle_clipping.bind(slides["39_resultats.html"]);
 
-				// });
+				});
 
 				// loadSlideHtml("44_1_resultats.html", "./Slides/44_1_resultats.html").then(() => { 
 				// 	slides["44_1_resultats.html"].init(
@@ -379,11 +384,11 @@
 				// });
 
 				
-				// loadSlideHtml("46_medical.html", "./Slides/46_medical.html").then(() => { 
-				// 	slides["46_medical.html"].init(
-				// 		document.getElementById("results_lungs")
-				// 	);
-				// });
+				loadSlideHtml("40_medical.html", "./Slides/40_medical.html").then(() => { 
+					slides["40_medical.html"].init(
+						document.getElementById("results_lungs")
+					);
+				});
 				// loadSlideHtml("46_1_medical.html");
 				// // loadSlideHtml("47_anime.html");
 				// // loadSlideHtml("47_1_anime.html");
@@ -401,12 +406,12 @@
 				// 	fragment_events["46_show3"] = slides["47_1_anime.html"].showMesh3.bind(slides["47_1_anime.html"]);
 				// 	// Reveal.slide(49);
 				// });
-				// loadSlideHtml("48_anime.html", "./Slides/48_anime.html").then(() => { 
-				// 	slides["48_anime.html"].init(
-				// 		document.getElementById("animated_lungs")
-				// 	);
-				// 	// slides["48_anime.html"].open()
-				// });
+				loadSlideHtml("41_anime.html", "./Slides/41_anime.html").then(() => { 
+					slides["41_anime.html"].init(
+						document.getElementById("animated_lungs")
+					);
+					// slides["41_anime.html"].open()
+				});
 
 				// loadSlideHtml("49_theorique.html");
 				// loadSlideHtml("50_theorique.html");
@@ -421,7 +426,7 @@
 				// loadSlideHtml("sep_resultats.html");
 				// loadSlideHtml("sep_medicale.html");
 				// Reveal.slide(36);
-				Reveal.slide(0);
+				Reveal.slide(31);
 			});
 
 			
